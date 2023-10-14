@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/telecom'
+    username: SandhyaShevatre
+    password: sandhya@123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# security:
+#   oauth2:
+#     client:
+#       registration:
+#         okta:
+#           client-id: RehnBNe7A86Q9ItJwvfFDjnr9M8nf7Ru
+#           client-secret: iNCEj8v_bQyZow8zAIz2zq4PjD5W_P_X57smIb2Q1gJTsq-QL_u3mLYVFLUN-nE1
+#           redirect-uri: "{baseUrl}/login/oauth2/code/okta"
+#           scope: openid,profile,email
+#       provider:
+#         okta:
+#           issuer-uri: https://YOUR_OKTA_DOMAIN/oauth2/default
+
+jwt:
+  private.key: classpath:app.key
+  public.key: classpath:app.pub
