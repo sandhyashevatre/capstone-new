@@ -3,38 +3,44 @@ import { useState } from "react";
 export default function Prepaid() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [location, setLocation] = useState("");
-  const [customerName, setCustomerName] = useState("");
+  const [customer, setCustomer] = useState("");
   const [provider,setProvider] = useState("");
   const changephonenumberhandle = (event) => {
     setPhoneNumber(event.target.value);
   };
   const changeproviderhandle = (event) => {
-     setProvider(event.target.value)
+     setProvider(event.target.value);
   }
   const changelocationhandle = (event) => {
     setLocation(event.target.value);
   };
   const changecustomerhandle = (event) => {
-    setCustomerName(event.target.value);
+    setCustomer(event.target.value);
   };
   const onsubmit = async (event) => {
     event.preventDefault();
-
+    console.log(JSON.stringify({
+      customerNumber: customer,
+      phoneNumber: phoneNumber,
+      provider: provider,
+      location: location,
+    }));
     try {
       const response = await fetch("http://localhost:8080/api/reservation", {
         method: "POST",
         headers: {
-          Authorization : 'Bearer ' + localStorage.getItem('token'),
+          Authorization : `Bearer ${localStorage.getItem('token')}`,
           "Content-Type": "application/json",
         },
-        body:{
-            customer:customerName,
-            phoneNumber:phoneNumber,
-            provider:provider,
-            location:location,
-        }
+        body: JSON.stringify({
+          customerName: customer,
+          phoneNumber: phoneNumber,
+          provider: provider,
+          location: location,
+        }),
       });
       if (response.ok) {
+        
         console.log(await response.json());
       } else {
         console.error("Failed to fetch data.");
@@ -49,10 +55,10 @@ export default function Prepaid() {
         <label htmlFor="customer">Customer</label>
         <input
           type="text"
-          value={customerName}
+          value={customer}
           name="customer"
           onChange={changecustomerhandle}
-        />
+        /> 
         <label htmlFor="phone-number">Phone Number</label>
         <input
           type="text"

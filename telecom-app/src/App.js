@@ -6,9 +6,16 @@ import Account from "./Account";
 import Prepaid from "./Prepaid";
 import Postpaid from "./Postpaid";
 import Reservations from "./Reservations";
+import ImageSlider from "./ImageSlider";
 
 class App extends Component {
   render() {
+    const images = [
+      "image1.jpg",
+      "image2.jpg",
+      "image3.jpg",
+      // Add more image URLs as needed
+    ];
     return (
       <BrowserRouter>
         <div>
@@ -54,6 +61,7 @@ class App extends Component {
             </ul>
           </nav>
           <hr />
+          <ImageSlider images={images} glideDuration={5000} />
 
           <Routes>
             <Route exact path="/home" Component={Home} />
