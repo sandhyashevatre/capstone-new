@@ -6,16 +6,10 @@ import Account from "./Account";
 import Prepaid from "./Prepaid";
 import Postpaid from "./Postpaid";
 import Reservations from "./Reservations";
-import ImageSlider from "./ImageSlider";
 
 class App extends Component {
   render() {
-    const images = [
-      "image1.jpg",
-      "image2.jpg",
-      "image3.jpg",
-      // Add more image URLs as needed
-    ];
+    
     return (
       <BrowserRouter>
         <div>
@@ -38,20 +32,17 @@ class App extends Component {
                   Account
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Postpiad
-              </a>
+              <li>
+              <div className="btn-group">
+                <a className="nav-link dropdown" href="#" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+                  Prepaid
+                </a>
                 <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Action</a></li>
+                <li><Link to="/prepaid" className="dropdown-item">New Registration for SIM</Link></li>
                 <li><a className="dropdown-item" href="#">Another action</a></li>
                   <li></li>
                 </ul>
-              </li>
-              <li>
-                <Link to="/postpaid" className="nav-link">
-                  Postpaid
-                </Link>
+                </div>
               </li>
               <li>
                 <Link to="/reservation" className="nav-link">
@@ -61,8 +52,8 @@ class App extends Component {
             </ul>
           </nav>
           <hr />
-          <ImageSlider images={images} glideDuration={5000} />
-
+          
+      
           <Routes>
             <Route exact path="/home" Component={Home} />
 

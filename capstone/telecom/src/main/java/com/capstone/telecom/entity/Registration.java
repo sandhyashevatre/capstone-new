@@ -1,5 +1,7 @@
 package com.capstone.telecom.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,4 +32,6 @@ public class Registration {
     private IMEI imei2;
 
     private boolean isActived;
+
+    private LocalDateTime registrationtTime;
 }

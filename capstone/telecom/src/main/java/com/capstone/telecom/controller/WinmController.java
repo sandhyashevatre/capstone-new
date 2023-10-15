@@ -1,6 +1,7 @@
 package com.capstone.telecom.controller;
 
 import java.net.http.HttpRequest;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +122,7 @@ public class WinmController {
             newIccid.setIccidNumber(RandomICCID.generate(reservationDTO.getProvider()));
             iccidRepository.save(newIccid);
             newRegistration.setIccid(newIccid);
+            newRegistration.setRegistrationtTime(LocalDateTime.now());
         if(customer.getRegistrations().size()!=0){
             customer.getRegistrations().add(newRegistration);
             customerRepository.save(customer);

@@ -16,7 +16,7 @@ public class RandomICCID {
 
         String issuerIdentifier = "";
 
-        switch (provider) {
+        switch (provider.toLowerCase()) {
 
             case "airtel":
 
