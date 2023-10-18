@@ -1,0 +1,59 @@
+/* Postpaid.css */
+
+.postpaid-container {
+  background-color: lightblue;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 600px;
+  margin: 0 auto;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 600px;
+    background-color: #3c80ce;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .radio-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .radio-label input {
+    margin-right: 5px;
+  }
+  
+  .button {
+    background-color: #1e0f8a;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #0d0655;
+  }
+  

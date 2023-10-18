@@ -4,8 +4,11 @@ import ImageSlider from "./ImageSlider";
 export default function Home() {
   const images = [
     "/images/IS1.jpg",
-    "image2.jpg",
-    "image3.jpg",
+    "/images/IS2.png",
+    "/images/IS3.png",
+    "/images/IS4.png",
+    "/images/IS5.png",
+    "/images/IS6.png",
     // Add more image URLs as needed
   ];
   return (

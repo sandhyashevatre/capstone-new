@@ -1,13 +1,13 @@
 import { Component } from "react";
 
-class Reservations extends Component{
+class Explore extends Component{
     render(){
         return (
             <div>
-                <p>Reservations</p>
+                <p>Explore</p>
             </div>
         );
     }
 }
 
-export default Reservations;
+export default Explore;

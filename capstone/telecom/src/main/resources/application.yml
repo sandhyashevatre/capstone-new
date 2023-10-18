@@ -11,6 +11,10 @@ spring:
       ddl-auto: update
     show-sql: true
 
+jwt:
+  private.key: classpath:app.key
+  public.key: classpath:app.pub    
+
 # security:
 #   oauth2:
 #     client:
@@ -24,6 +28,4 @@ spring:
 #         okta:
 #           issuer-uri: https://YOUR_OKTA_DOMAIN/oauth2/default
 
-jwt:
-  private.key: classpath:app.key
-  public.key: classpath:app.pub
+

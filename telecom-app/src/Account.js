@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './Account.css'; // Import the CSS file
 
 export default function Account() {
     const [username, setUsername] = useState("");
@@ -23,7 +23,7 @@ export default function Account() {
   
         if (response.ok) {
           const data = await response.json();
-          localStorage.setItem('token',data.token);
+          localStorage.setItem('token', data.token);
         } else {
           console.error("Failed to fetch data.");
         }
@@ -41,7 +41,7 @@ export default function Account() {
     };
   
     return (
-      <div>
+      <div className="account-container"> {/* Apply the CSS class to the container */}
         <form className="login-form" method="POST" onSubmit={onsubmit}>
           <label htmlFor="username">Username</label>
           <input type="text" value={username} name="username" onChange={handleUserChange} />
@@ -51,4 +51,4 @@ export default function Account() {
         </form>
       </div>
     );
-  }
+}

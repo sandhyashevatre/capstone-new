@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -18,10 +19,8 @@ public class ICCID {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
+    @Pattern(regexp = "[0-9]{19}[0-9xX]$",message = "ICCID should be 20 digits")
     private String iccidNumber;
 
-    // Add other ICCID-specific attributes and constraints
-
-    // Getters and setters
+    private String networkProvider;
 }

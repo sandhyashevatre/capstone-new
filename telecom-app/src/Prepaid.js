@@ -63,9 +63,10 @@ export default function Prepaid() {
   };
   return (
     <div className="prepaid-container">
+       <p> Note: Register here for prepaid SIM card</p>
       <form method="POST" className="login-form" onSubmit={onsubmit}>
         <label htmlFor="customer" className="form-label">
-          Customer
+          Customer Name
         </label>
         <input
           type="text"

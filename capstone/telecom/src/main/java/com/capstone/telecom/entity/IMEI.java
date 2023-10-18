@@ -6,9 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "imei")
 public class IMEI {
     @Id
@@ -16,10 +19,7 @@ public class IMEI {
     private Long id;
 
     @NotBlank
-    @Size(max = 15)
+    @Pattern(regexp = "[0-9]{15}$",message = "The IMEI number should be 15 digit")
     private String imeiNumber;
 
-    // Add other IMEI-specific attributes and constraints
-
-    // Getters and setters
 }

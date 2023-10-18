@@ -31,7 +31,7 @@ public class Registration {
     @JoinColumn(name="imei2_id")
     private IMEI imei2;
 
-    private boolean isActived;
+    private boolean isActivated;
 
     private LocalDateTime registrationtTime;
 }

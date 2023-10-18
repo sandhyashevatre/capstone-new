@@ -60,7 +60,7 @@ public class RandomICCID {
 
         char checkDigit = calculateLuhnDigit(partialICCID);
 
-        ICCID = majorIndustryIdentifier + issuerIdentifier + individualAccountIdentifier + checkDigit;
+        ICCID = majorIndustryIdentifier + issuerIdentifier + individualAccountIdentifier + checkDigit + "X";
 
         return ICCID;
 

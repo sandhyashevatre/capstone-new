@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 
-const ImageSlider = ({ images, glideDuration = 3000 }) => {
+const ImageSlider = ({ images, glideDuration = 1000 }) => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -17,21 +17,15 @@ const ImageSlider = ({ images, glideDuration = 3000 }) => {
       clearInterval(timer);
     };
   }, [index, images.length, glideDuration]);
-
-  const sliderStyle = {
-    width: "calc(100% - 100px)", // 100px padding on both sides
-    height: "150px",
-    margin: "0 auto",
-  };
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} style={sliderStyle}>
+    <Carousel activeIndex={index} onSelect={handleSelect} >
       {images.map((image, i) => (
         <Carousel.Item key={i}>
           <img
-            className="d-block w-100"
+            className="d-block "
             src={image}
             alt={`Slide ${i}`}
-            style={{ height: "100%", objectFit: "cover" }}
+            style={{ width:"50%", height: "10%", objectFit: "cover", margin: "0 auto" }}
           />
         </Carousel.Item>
       ))}

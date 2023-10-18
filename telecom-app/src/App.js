@@ -5,78 +5,71 @@ import Contact from "./Contact";
 import Account from "./Account";
 import Prepaid from "./Prepaid";
 import Postpaid from "./Postpaid";
-import Reservations from "./Reservations";
+import Explore from "./Explore";
+import './App.css';
+
 
 class App extends Component {
   render() {
-    
     return (
       <BrowserRouter>
         <div>
-          <h2>Wireless Inventory Management </h2>
-
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <ul className="navbar-nav mr-auto">
-              <li>
-                <Link to="/home" className="nav-link">
-                  Home
-                </Link>
-              </li>
-              <li>
+          <nav className="navbar">
+            <Link to="/home" className="navbar-brand">
+              Home
+            </Link>
+            <ul className="navbar">
+              <li className="nav-item">
                 <Link to="/contact" className="nav-link">
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link to="/about" className="nav-link">
-                  Account
-                </Link>
-              </li>
-              <li>
-              <div className="btn-group">
-                <a className="nav-link dropdown" href="#" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+              <li className="nav-item dropdown">
+                <span className="nav-link">
                   Prepaid
-                </a>
-                <ul className="dropdown-menu">
-                <li><Link to="/prepaid" className="dropdown-item">New Registration for SIM</Link></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li></li>
-                </ul>
-                </div>
+                  <div className="dropdown">
+                    <ul className="dropdown-menu">
+                      <li><Link to="/prepaid" className="dropdown-item">New SIM registration</Link></li>
+                      <li><a className="dropdown-item" href="#">Post SIM card</a></li>
+                    </ul>
+                  </div>
+                </span>
               </li>
-              <li>
-                <Link to="/reservation" className="nav-link">
+              <li className="nav-item dropdown">
+                <span className="nav-link">
                   Postpaid
+                  <div className="dropdown">
+                    <ul className="dropdown-menu">
+                      <li><Link to="/postpaid" className="dropdown-item">New SIM registration</Link></li>
+                      <li><a className="dropdown-item" href="#">Post SIM card</a></li>
+                    </ul>
+                  </div>
+                </span>
+              </li>
+              <li className="nav-item">
+                <Link to="/Explore" className="nav-link">
+                  Explore
                 </Link>
               </li>
             </ul>
+            <div className="nav-item">
+              <Link to="/account" className="nav-link">
+                Account
+              </Link>
+            </div>
           </nav>
           <hr />
-          
-      
           <Routes>
-            <Route exact path="/home" Component={Home} />
-
-            <Route path="contact" Component={Contact} />
-
-            <Route path="about" Component={Account} />
-
-            <Route exact path="/prepaid" Component={Prepaid} />
-
-            <Route path="/postpaid" Component={Postpaid} />
-
-            <Route path="reservations" Component={Reservations} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/prepaid" element={<Prepaid />} />
+            <Route path="/postpaid" element={<Postpaid />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/account" element={<Account />} />
           </Routes>
         </div>
       </BrowserRouter>
     );
   }
 }
-
-// const imgId = {
-
-//   link : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/MS_Dhoni_2016.jpg/330px-MS_Dhoni_2016.jpg"
-
-// }
-
 export default App;

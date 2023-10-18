@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -18,11 +19,8 @@ public class MSISDN {
     private Long id;
 
     @NotBlank
-    @Size(max = 15)
+    @Pattern(regexp = "[1-9][0-9]{9}$",message = "Msisdn Should be 10 digits")
     private String msisdnNumber;
 
-    // Add other MSISDN-specific attributes and constraints
-
-    // Getters and setters
 }
 

@@ -1,51 +1,63 @@
 /* App.css */
 
-/* Global styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #8f2222;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h2 {
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-  margin: 20px 0;
-}
-
 /* Navbar styles */
 .navbar {
-  background-color: #333;
+  background-color: #1e0f8a;
+  color: #fff;
+  display: flex; /* Make the navbar horizontal */
+  justify-content: space-between; /* Space between elements, pushing "Account" to the right */
+  align-items: center; /* Vertically align items */
+  padding: 10px;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  padding: 0.5rem 1rem;
   color: #fff;
 }
 
-.navbar a.nav-link {
+.navbar-nav {
+  list-style: none; /* Remove bullet points for list items */
+  display: flex; /* Make the navbar items horizontal */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 1rem; /* Adjust the spacing between navbar items */
+  font-size: 1.5em;
+  display: inline;
+}
+
+.nav-link {
   color: #fff;
   text-decoration: none;
-  margin-right: 10px;
   transition: color 0.3s;
 }
 
-.navbar a.nav-link:hover {
-  color: #00bfff; /* Change the color on hover */
+/* Dropdown styling */
+.dropdown {
+  position: relative;
 }
 
-/* Main content styles */
-hr {
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #333;
   border: none;
-  border-top: 1px solid #ddd;
-  margin: 20px 0;
+  min-width: 200px;
 }
-.imageslider {
-  padding: 50px;
-  width: 100%;
-  height: 140px;
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Corrected from 'white' to 'block' */
 }
-/* Component-specific styles */
-/* Define styles for your individual components (Home, Contact, Account, Prepaid, Postpaid, Reservations) here */
+
+.dropdown-item {
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: #ff9900;
+  color: #bcd52e;
+}
