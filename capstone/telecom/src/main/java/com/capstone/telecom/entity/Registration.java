@@ -13,6 +13,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Registration {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,14 +25,11 @@ public class Registration {
     private MSISDN msisdn;
 
     @OneToOne
-    @JoinColumn(name="imei1_id")
-    private IMEI imei1;
-
-    @OneToOne
-    @JoinColumn(name="imei2_id")
-    private IMEI imei2;
+    private IMEI imei;
 
     private boolean isActivated;
 
     private LocalDateTime registrationtTime;
+
+    private String connectionType;
 }

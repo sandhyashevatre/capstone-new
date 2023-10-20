@@ -1,0 +1,58 @@
+/* Data.css */
+
+/* Style for the entire table container */
+.Data-table {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  /* Style for the table and its elements */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Style for table header (th) */
+  th {
+    background-color: #1e0f8a;
+    color: #fff;
+  }
+  
+  /* Style for alternating rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style for the "Active" and "Inactive" buttons */
+  button.active {
+    background-color: #3db84b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  button.inactive {
+    background-color: #e84c3d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  

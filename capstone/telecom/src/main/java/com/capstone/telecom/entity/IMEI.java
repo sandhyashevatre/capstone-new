@@ -14,11 +14,11 @@ import lombok.Data;
 @Data
 @Table(name = "imei")
 public class IMEI {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Pattern(regexp = "[0-9]{15}$",message = "The IMEI number should be 15 digit")
     private String imeiNumber;
 

@@ -1,60 +1,84 @@
-import React, { useState } from "react";
-import "./Prepaid.css";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "./ReplaceSim.css";
 
-export default function Prepaid() {
+export default function ReplaceSim(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
+
   const [location, setLocation] = useState("");
+
   const [customer, setCustomer] = useState("");
+
   const [provider, setProvider] = useState("");
+
   const changephonenumberhandle = (event) => {
     setPhoneNumber(event.target.value);
   };
+
   const changeproviderhandle = (event) => {
     setProvider(event.target.value);
   };
+
   const changelocationhandle = (event) => {
     setLocation(event.target.value);
   };
+
   const changecustomerhandle = (event) => {
     setCustomer(event.target.value);
   };
+
   const onsubmit = async (event) => {
     event.preventDefault();
+
     console.log(
       JSON.stringify({
         customerNumber: customer,
+
         phoneNumber: phoneNumber,
+
         provider: provider,
+
         location: location,
+
+        connectionType: props.connection.type,
       })
     );
+
     try {
-      const response = await fetch("http://localhost:8080/api/reservation", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      const response = await fetch(
+        "http://localhost:8080/api/replacesim",
+        {
+          method: "POST",
+
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          customerName: customer,
-          reservingNumber: phoneNumber,
-          provider: provider,
-          location: location,
-          connectionType: "prepaid",
-        }),
-      });
+          },
+
+          body: JSON.stringify({
+            customerName: customer,
+
+            reservingNumber: phoneNumber,
+
+            provider: provider,
+
+            location: location,
+
+            connectionType: props.connection.type,
+          }),
+        }
+      );
+
       if (response.ok) {
         toast.success("Sim has been registered successfully", {
-          position: "top-right",
-          autoClose: 5000, // Auto close the notification after 5 seconds
+          position: "top-center",
+
+          autoClose: 5000, 
         });
-        // Reload the page after a short delay (5 seconds)
+
         setTimeout(() => {
           window.location.reload();
         }, 5000);
-        console.log(await response.json());
       } else {
         console.error("Failed to fetch data.");
       }
@@ -62,13 +86,14 @@ export default function Prepaid() {
       console.error("Error:", error);
     }
   };
+
   return (
-    <div className="prepaid-container">
-       <p> Note: Register here for prepaid SIM card</p>
-      <form method="POST" className="login-form" onSubmit={onsubmit}>
+    <div className="replace-container">
+      <form method="POST" className="replace-form" onSubmit={onsubmit}>
         <label htmlFor="customer" className="form-label">
-          Customer Name
+          Customer
         </label>
+
         <input
           type="text"
           value={customer}
@@ -76,9 +101,11 @@ export default function Prepaid() {
           onChange={changecustomerhandle}
           className="form-input"
         />
+
         <label htmlFor="phone-number" className="form-label">
           Phone Number
         </label>
+
         <input
           type="text"
           value={phoneNumber}
@@ -86,9 +113,11 @@ export default function Prepaid() {
           onChange={changephonenumberhandle}
           className="form-input"
         />
+
         <label htmlFor="provider" className="form-label radio-label">
           Networks
         </label>
+
         <label className="radio-label">
           <input
             type="radio"
@@ -98,6 +127,7 @@ export default function Prepaid() {
           />
           Airtel
         </label>
+
         <label className="radio-label">
           <input
             type="radio"
@@ -107,6 +137,7 @@ export default function Prepaid() {
           />
           Jio
         </label>
+
         <label className="radio-label">
           <input
             type="radio"
@@ -116,6 +147,7 @@ export default function Prepaid() {
           />
           Vodafone Idea
         </label>
+
         <label className="radio-label">
           <input
             type="radio"
@@ -125,8 +157,11 @@ export default function Prepaid() {
           />
           Aircel
         </label>
+
         <label htmlFor="location" className="form-label">
           Location
+        </label>
+
         <input
           type="text"
           value={location}
@@ -134,7 +169,7 @@ export default function Prepaid() {
           onChange={changelocationhandle}
           className="form-input"
         />
-        </label>
+
         <button type="submit" className="button">
           Submit
         </button>
@@ -142,4 +177,3 @@ export default function Prepaid() {
     </div>
   );
 }
-

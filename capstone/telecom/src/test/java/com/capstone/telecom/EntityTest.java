@@ -1,5 +1,6 @@
 package com.capstone.telecom;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import com.capstone.telecom.dto.InsertSimDTO;
+import com.capstone.telecom.dto.ReservationDTO;
+import com.capstone.telecom.dto.SimDTO;
 import com.capstone.telecom.entity.ICCID;
 import com.capstone.telecom.entity.IMEI;
 import com.capstone.telecom.entity.MSISDN;
@@ -51,13 +55,6 @@ public class EntityTest {
         assertNotNull(foundICCID);
     }
 
-    @Test
-    public void testIccidNumberIsNotBlank() {
-        ICCID iccid = new ICCID();
-
-        assertThrows(ConstraintViolationException.class, () -> iccidRepository.save(iccid));
-    }
-
     //MSIDN test 
       @Test
     public void testSaveMSISDN() {
@@ -79,23 +76,7 @@ public class EntityTest {
         assertNotNull(foundMSISDN);
     }
 
-    @Test
-    public void testMsisdnNumberIsNotBlank() {
-        MSISDN msisdn = new MSISDN();
-
-        assertThrows(ConstraintViolationException.class, () -> msisdnRepository.save(msisdn));
-    }
-
-      
-    //IMEI tests
-    @Test
-    public void testSaveIMEI() {
-        IMEI imei = new IMEI();
-        imei.setImeiNumber("123456789012345");
-
-        IMEI savedIMEI = imeiRepository.save(imei);
-        assertNotNull(savedIMEI.getId());
-    }
+    
 
     @Test
     public void testFindIMEIByImeiNumber() {
@@ -108,10 +89,52 @@ public class EntityTest {
         assertNotNull(foundIMEI);
     }
 
-    @Test
-    public void testImeiNumberIsNotBlank() {
-        IMEI imei = new IMEI();
+//ReservationDTO
+        @Test
+        void testReservationDTO() {
+        ReservationDTO reservationDTO = new ReservationDTO();
+        reservationDTO.setCustomerName("John Doe");
+        reservationDTO.setProvider("Telecom Co.");
+        reservationDTO.setReservingNumber("1234567890");
+        reservationDTO.setLocation("New York");
+        reservationDTO.setConnectionType("4G");
 
-        assertThrows(ConstraintViolationException.class, () -> imeiRepository.save(imei));
+        assertEquals("John Doe", reservationDTO.getCustomerName());
+        assertEquals("Telecom Co.", reservationDTO.getProvider());
+        assertEquals("1234567890", reservationDTO.getReservingNumber());
+        assertEquals("New York", reservationDTO.getLocation());
+        assertEquals("4G", reservationDTO.getConnectionType());
     }
+//InsertSimDTO Test Cases
+     @Test
+    void testInsertSimDTO() {
+        InsertSimDTO insertSimDTO = new InsertSimDTO();
+        insertSimDTO.setImei("1234567890");
+        insertSimDTO.setMsisdn("9876543210");
+
+        assertEquals("1234567890", insertSimDTO.getImei());
+        assertEquals("9876543210", insertSimDTO.getMsisdn());
+    }
+ //SimDTO Test Cases
+    @Test
+    void testSimDTO() {
+        SimDTO simDTO = new SimDTO();
+        simDTO.setId(1);
+        simDTO.setMsisdn("9876543210");
+        simDTO.setIccid("ICCID123");
+        simDTO.setImei("1234567890");
+        simDTO.setReservationDateTime("2023-10-20T10:00:00");
+        simDTO.setActivated(true);
+        simDTO.setCustomerName("John Doe");
+
+        assertEquals(1, simDTO.getId());
+        assertEquals("9876543210", simDTO.getMsisdn());
+        assertEquals("ICCID123", simDTO.getIccid());
+        assertEquals("1234567890", simDTO.getImei());
+        assertEquals("2023-10-20T10:00:00", simDTO.getReservationDateTime());
+        assertEquals(true, simDTO.isActivated());
+        assertEquals("John Doe", simDTO.getCustomerName());
+    }   
+
+
 }

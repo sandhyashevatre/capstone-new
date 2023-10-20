@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.capstone.telecom.business.LoggedInUser;
 import com.capstone.telecom.business.LoginBody;
 import com.capstone.telecom.business.RandomICCID;
-import com.capstone.telecom.business.ReservationDTO;
+import com.capstone.telecom.dto.ReservationDTO;
 import com.capstone.telecom.entity.User;
 
 public class BusinessTest {
@@ -68,9 +68,9 @@ public class BusinessTest {
     @Test
     public void testGetSetPhoneNumber() {
         ReservationDTO reservationDTO = new ReservationDTO();
-        reservationDTO.setPhoneNumber("1234567890");
+        reservationDTO.setReservingNumber("1234567890");
 
-        assertEquals("1234567890", reservationDTO.getPhoneNumber());
+        assertEquals("1234567890", reservationDTO.getReservingNumber());
     }
 
     @Test

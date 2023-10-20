@@ -25,9 +25,10 @@ export default function Postpaid() {
     console.log(
       JSON.stringify({
         customerNumber: customer,
-        phoneNumber: phoneNumber,
+        reservingNumber: phoneNumber,
         provider: provider,
         location: location,
+        connectionType: "postpaid",
       })
     );
     try {
@@ -39,9 +40,10 @@ export default function Postpaid() {
         },
         body: JSON.stringify({
           customerName: customer,
-          phoneNumber: phoneNumber,
+          reservingNumber: phoneNumber,
           provider: provider,
           location: location,
+          connectionType: "postpaid"
         }),
       });
       if (response.ok) {

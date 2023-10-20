@@ -21,17 +21,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // name
     private String name;
-
-    @Size(max = 50, message = "Enter your firstname within 50 words")
-    private String firstname;
-
-    @Size(max = 50, message = "Enter your lastname within 50 words")
-    private String lastname;
-
-    @Size(max = 12, message = "Enter your valid aadhar number")
-    private String aadharNumber;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Registration> registrations = new ArrayList<>();

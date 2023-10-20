@@ -1,13 +1,10 @@
-/* App.css */
-
-/* Navbar styles */
 
 .navbar {
   background-color: #1e0f8a;
   color: #fff;
-  display: flex; /* Make the navbar horizontal */
-  justify-content: space-between; /* Space between elements, pushing "Account" to the right */
-  align-items: center; /* Vertically align items */
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
 }
 
@@ -18,14 +15,13 @@
 }
 
 .navbar-nav {
-  list-style: none; /* Remove bullet points for list items */
-  display: flex; /* Make the navbar items horizontal */
-  margin: 0;
+  list-style: none; 
+  display: flex; 
   padding: 0;
 }
 
 .nav-item {
-  margin-left: 1rem; /* Adjust the spacing between navbar items */
+  margin-left: 1rem; 
   font-size: 1.5em;
   display: inline;
 }
@@ -36,7 +32,7 @@
   transition: color 0.3s;
 }
 
-/* Dropdown styling */
+
 .dropdown {
   position: relative;
 }
@@ -59,6 +55,28 @@
 }
 
 .dropdown-item:hover {
-  background-color: #ff9900;
+  background-color: #5971e7;
   color: #bcd52e;
+}
+
+.social-links a {
+  color: #130f0f;
+  text-decoration: none; 
+  margin: 0 10px; 
+  font-size: 18px; 
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+
+.social-links a:hover {
+  color: #fff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex; 
+  justify-content: center;
 }

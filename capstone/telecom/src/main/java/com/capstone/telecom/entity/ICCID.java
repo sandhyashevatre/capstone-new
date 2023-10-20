@@ -14,11 +14,11 @@ import lombok.Data;
 @Table(name = "iccid")
 @Data
 public class ICCID {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Pattern(regexp = "[0-9]{19}[0-9xX]$",message = "ICCID should be 20 digits")
     private String iccidNumber;
 

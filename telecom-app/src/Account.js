@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Account.css'; // Import the CSS file
 
 export default function Account() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
   
+    const history = useNavigate();
     const onsubmit = async (event) => {
       event.preventDefault();
   
@@ -24,6 +26,8 @@ export default function Account() {
         if (response.ok) {
           const data = await response.json();
           localStorage.setItem('token', data.token);
+
+          history('/home')
         } else {
           console.error("Failed to fetch data.");
         }

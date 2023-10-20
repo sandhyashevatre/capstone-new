@@ -14,11 +14,11 @@ import lombok.Data;
 @Table(name = "msisdn")
 @Data
 public class MSISDN {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Pattern(regexp = "[1-9][0-9]{9}$",message = "Msisdn Should be 10 digits")
     private String msisdnNumber;
 
