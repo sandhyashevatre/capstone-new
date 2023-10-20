@@ -114,8 +114,4 @@ public class EntityTest {
 
         assertThrows(ConstraintViolationException.class, () -> imeiRepository.save(imei));
     }
-
-
-
-
 }

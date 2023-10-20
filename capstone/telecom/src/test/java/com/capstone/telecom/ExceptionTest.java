@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.capstone.telecom.exception.TelecomBusinessException;
 
-@SpringBootTest
 public class ExceptionTest {
 
      @Test

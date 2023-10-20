@@ -1,4 +1,3 @@
-
 jwt:
   private.key: classpath:app.key
   public.key: classpath:app.pub
@@ -7,7 +6,7 @@ spring:
   datasource:
     url: jdbc:h2:mem:mydb
     username: SandhyaShevatre
-    password: sandhya@123
+    password: password
     driverClassName: org.h2.Driver
   jpa:
     properties:

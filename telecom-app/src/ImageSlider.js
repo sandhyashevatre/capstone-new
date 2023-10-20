@@ -32,5 +32,4 @@ const ImageSlider = ({ images, glideDuration = 1000 }) => {
     </Carousel>
   );
 };
-
 export default ImageSlider;
