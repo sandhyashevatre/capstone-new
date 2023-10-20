@@ -34,27 +34,31 @@ public class ServiceTests {
 
     // @Test
     // public void testCustomUserDetailsService_LoadUserByUsername_UserFound() {
-    //     CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
-    //     String username = "testUser";
-    //     User user = new User();
-    //     user.setUsername(username);
-    //     user.setPassword("{bcrypt}$2a$10$testPasswordHash");
-    //     user.setRole("ROLE_USER");
-    //     when(userService.getByName(username)).thenReturn(Optional.of(user));
+    // CustomUserDetailsService customUserDetailsService = new
+    // CustomUserDetailsService();
+    // String username = "testUser";
+    // User user = new User();
+    // user.setUsername(username);
+    // user.setPassword("{bcrypt}$2a$10$testPasswordHash");
+    // user.setRole("ROLE_USER");
+    // when(userService.getByName(username)).thenReturn(Optional.of(user));
 
-    //     UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+    // UserDetails userDetails =
+    // customUserDetailsService.loadUserByUsername(username);
 
-    //     assertEquals(username, userDetails.getUsername());
-    //     // Add more assertions for roles, passwords, etc.
+    // assertEquals(username, userDetails.getUsername());
+    // // Add more assertions for roles, passwords, etc.
     // }
 
     // @Test
     // public void testCustomUserDetailsService_LoadUserByUsername_UserNotFound() {
-    //     CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
-    //     String username = "nonExistentUser";
-    //     when(userService.getByName(username)).thenReturn(Optional.empty());
+    // CustomUserDetailsService customUserDetailsService = new
+    // CustomUserDetailsService();
+    // String username = "nonExistentUser";
+    // when(userService.getByName(username)).thenReturn(Optional.empty());
 
-    //     assertThrows(UsernameNotFoundException.class, () -> customUserDetailsService.loadUserByUsername(username));
+    // assertThrows(UsernameNotFoundException.class, () ->
+    // customUserDetailsService.loadUserByUsername(username));
     // }
 
     @Test
@@ -78,20 +82,21 @@ public class ServiceTests {
 
     // @Test
     // public void testUserService_Authenticate_ValidUser() {
-    //     UserService userService = new UserService(userRepository);
-    //     String username = "testUser";
-    //     String password = "testPassword";
-    //     User user = new User();
-    //     user.setUsername(username);
-    //     user.setPassword("{bcrypt}$2a$10$testPasswordHash");
-    //     user.setRole("ROLE_USER");
-    //     when(userRepository.findByUsername(username)).thenReturn(Optional.of(user));
+    // UserService userService = new UserService(userRepository);
+    // String username = "testUser";
+    // String password = "testPassword";
+    // User user = new User();
+    // user.setUsername(username);
+    // user.setPassword("{bcrypt}$2a$10$testPasswordHash");
+    // user.setRole("ROLE_USER");
+    // when(userRepository.findByUsername(username)).thenReturn(Optional.of(user));
 
-    //     Optional<User> authenticatedUser = userService.authenticate(username, password);
+    // Optional<User> authenticatedUser = userService.authenticate(username,
+    // password);
 
-    //     assertTrue(authenticatedUser.isPresent());
-    //     assertEquals(username, authenticatedUser.get().getUsername());
-     
+    // assertTrue(authenticatedUser.isPresent());
+    // assertEquals(username, authenticatedUser.get().getUsername());
+
     // }
 
     @Test

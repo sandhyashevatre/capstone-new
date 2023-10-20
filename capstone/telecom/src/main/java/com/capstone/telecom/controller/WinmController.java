@@ -44,7 +44,6 @@ public class WinmController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    // ICCID Endpoints
     @GetMapping("/iccid")
     public List<ICCID> getAllICCID() {
         return iccidRepository.findAll();
@@ -55,7 +54,6 @@ public class WinmController {
         return iccidRepository.save(iccid);
     }
 
-    // MSISDN Endpoints
     @GetMapping("/msisdn")
     public List<MSISDN> getAllMSISDN() {
         return msisdnRepository.findAll();
@@ -66,7 +64,6 @@ public class WinmController {
         return msisdnRepository.save(msisdn);
     }
 
-    // IMEI Endpoints
     @GetMapping("/imei")
     public List<IMEI> getAllIMEI() {
         return imeiRepository.findAll();
@@ -77,7 +74,6 @@ public class WinmController {
         return imeiRepository.save(imei);
     }
 
-    // User Endpoints
     @GetMapping("/user")
     public List<User> getAllUsers() {
         return userRepository.findAll();

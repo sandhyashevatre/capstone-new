@@ -2,13 +2,9 @@ package com.capstone.telecom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.dao.DataIntegrityViolationException;
-
 import com.capstone.telecom.dto.InsertSimDTO;
 import com.capstone.telecom.dto.ReservationDTO;
 import com.capstone.telecom.dto.SimDTO;
@@ -18,8 +14,6 @@ import com.capstone.telecom.entity.MSISDN;
 import com.capstone.telecom.repository.ICCIDRepository;
 import com.capstone.telecom.repository.IMEIRepository;
 import com.capstone.telecom.repository.MSISDNRepository;
-
-import jakarta.validation.ConstraintViolationException;
 
 @DataJpaTest
 public class EntityTest {
@@ -32,8 +26,6 @@ public class EntityTest {
 
     @Autowired
     private IMEIRepository imeiRepository;
-
-    //ICCID tests
 
     @Test
     public void testSaveICCID() {
@@ -55,7 +47,6 @@ public class EntityTest {
         assertNotNull(foundICCID);
     }
 
-    //MSIDN test 
       @Test
     public void testSaveMSISDN() {
         MSISDN msisdn = new MSISDN();
@@ -89,7 +80,6 @@ public class EntityTest {
         assertNotNull(foundIMEI);
     }
 
-//ReservationDTO
         @Test
         void testReservationDTO() {
         ReservationDTO reservationDTO = new ReservationDTO();
@@ -105,7 +95,7 @@ public class EntityTest {
         assertEquals("New York", reservationDTO.getLocation());
         assertEquals("4G", reservationDTO.getConnectionType());
     }
-//InsertSimDTO Test Cases
+
      @Test
     void testInsertSimDTO() {
         InsertSimDTO insertSimDTO = new InsertSimDTO();
@@ -115,7 +105,7 @@ public class EntityTest {
         assertEquals("1234567890", insertSimDTO.getImei());
         assertEquals("9876543210", insertSimDTO.getMsisdn());
     }
- //SimDTO Test Cases
+
     @Test
     void testSimDTO() {
         SimDTO simDTO = new SimDTO();

@@ -18,7 +18,6 @@ public class DomainUserService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-    
     public DomainUserService(@Autowired UserRepository userRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
@@ -39,6 +38,5 @@ public class DomainUserService {
         user.setRole(role);
         return userRepository.save(user);
     }
-
 
 }

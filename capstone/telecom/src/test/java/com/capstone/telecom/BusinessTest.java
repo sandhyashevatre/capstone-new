@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import com.capstone.telecom.business.LoggedInUser;
@@ -15,7 +14,6 @@ import com.capstone.telecom.entity.User;
 
 public class BusinessTest {
 
-    //random ICCID
     @Test
     public void testGenerateValidICCID() {
         String iccid = RandomICCID.generate("airtel");
@@ -28,7 +26,6 @@ public class BusinessTest {
         assertThrows(IllegalArgumentException.class, () -> RandomICCID.generate("invalidprovider"));
     }
 
-    //loggedinuser
     @Test
     public void testGetSetLoggedInUser() {
         LoggedInUser loggedInUser = new LoggedInUser();
@@ -37,8 +34,6 @@ public class BusinessTest {
 
         assertEquals(user, loggedInUser.getLoggedInUser());
     }
-
-    //login body
 
     @Test
     public void testGetSetUsername() {
@@ -55,8 +50,7 @@ public class BusinessTest {
 
         assertEquals("password", loginBody.getPassword());
     }
-
-    // reservation DTO
+    
     @Test
     public void testGetSetCustomerName() {
         ReservationDTO reservationDTO = new ReservationDTO();

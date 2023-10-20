@@ -2,7 +2,6 @@ package com.capstone.telecom.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.authentication.PasswordEncoderParser;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,36 +14,31 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class CustomUserDetailsService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       
-    	var myUserEntityOpt = userService.getByName(username);
+
+        var myUserEntityOpt = userService.getByName(username);
         if (myUserEntityOpt.isEmpty()) {
             throw new UsernameNotFoundException("No user found with username " + username);
         }
         var myUserEntity = myUserEntityOpt.get();
-        boolean enabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
-        
-        var springSecurityUserEntity = User.withUsername(myUserEntity.getUsername())
-                                            .password(
-                                            myUserEntity.getPassword())
-                                            .roles(myUserEntity.getRole())
-                                            .build();
 
+        var springSecurityUserEntity = User.withUsername(myUserEntity.getUsername())
+                .password(
+                        myUserEntity.getPassword())
+                .roles(myUserEntity.getRole())
+                .build();
         return springSecurityUserEntity;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-         return encoder;
-    } 
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return encoder;
+    }
 }

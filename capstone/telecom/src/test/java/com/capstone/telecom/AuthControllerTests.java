@@ -4,7 +4,8 @@
 // import org.junit.jupiter.api.extension.ExtendWith;
 // import org.mockito.junit.jupiter.MockitoExtension;
 // import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+// import
+// org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 // import org.springframework.boot.test.context.SpringBootTest;
 // import org.springframework.boot.test.mock.mockito.MockBean;
 // import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -12,110 +13,91 @@
 // import com.capstone.telecom.business.LoginBody;
 // import com.capstone.telecom.service.UserService;
 
- 
-
 // @SpringBootTest
 
 // @AutoConfigureMockMvc
-
 
 // @ExtendWith(MockitoExtension.class)
 
 // public class AuthControllerTests {
 
- 
+// @Autowired
 
-//         @Autowired
+// private MockMvc mockMvc;
 
-//         private MockMvc mockMvc;
+// @MockBean
 
- 
+// private UserService userService;
 
-//         @MockBean
+// @MockBean
 
-//         private UserService userService;
+// private AuthenticationManager authenticationManager;
 
- 
+// @Autowired
 
-//         @MockBean
+// private ObjectMapper objectMapper;
 
-//         private AuthenticationManager authenticationManager;
+// @Test
 
- 
+// void registeringUser() throws Exception {
 
-//         @Autowired
+// SignupBody signupBody = SignupBody.builder()
 
-//         private ObjectMapper objectMapper;
+// .username("test")
 
- 
+// .password("test123")
 
-//         @Test
+// .email("test123@gmail.com").build();
 
-//         void registeringUser() throws Exception {
+// mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON)
 
-//                 SignupBody signupBody = SignupBody.builder()
+// .content(objectMapper.writeValueAsString(signupBody)))
 
-//                                 .username("test")
+// .andExpect(status().isCreated())
 
-//                                 .password("test123")
+// .andExpect(jsonPath("$.message").value("User registered successfully!"));
 
-//                                 .email("test123@gmail.com").build();
+// }
 
- 
+// @Test
 
-//                 mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON)
+// public void testUserAuthentication() throws Exception {
 
-//                                 .content(objectMapper.writeValueAsString(signupBody)))
+// LoginBody loginBody = new LoginBody("testUser", "testPassword");
 
-//                                 .andExpect(status().isCreated())
+// List<GrantedAuthority> authorities = Collections.singletonList(new
+// SimpleGrantedAuthority("ROLE_USER"));
 
-//                                 .andExpect(jsonPath("$.message").value("User registered successfully!"));
+// Authentication auth = new UsernamePasswordAuthenticationToken("testUser",
+// "testPassword", authorities);
 
-//         }
+// when(authenticationManager
 
+// .authenticate(new UsernamePasswordAuthenticationToken("testUser",
+// "testPassword")))
 
-//         @Test
+// .thenReturn(auth);
 
-//         public void testUserAuthentication() throws Exception {
+// SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
 
-//                 LoginBody loginBody = new LoginBody("testUser", "testPassword");
+// securityContext.setAuthentication(auth);
 
- 
+// SecurityContextHolder.setContext(securityContext);
 
-//                 List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+// mockMvc.perform(MockMvcRequestBuilders
 
-//                 Authentication auth = new UsernamePasswordAuthenticationToken("testUser", "testPassword", authorities);
+// .post("/api/auth/token")
 
- 
+// .contentType(MediaType.APPLICATION_JSON)
 
-//                 when(authenticationManager
+// .content(objectMapper.writeValueAsString(loginBody)))
 
-//                                 .authenticate(new UsernamePasswordAuthenticationToken("testUser", "testPassword")))
+// .andExpect(status().isOk())
 
-//                                 .thenReturn(auth);
+// .andExpect(content().contentType(MediaType.APPLICATION_JSON))
 
-//                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+// .andExpect(jsonPath("$.token").isNotEmpty());
 
-//                 securityContext.setAuthentication(auth);
+// }
 
-//                 SecurityContextHolder.setContext(securityContext);
-
- 
-
-//                 mockMvc.perform(MockMvcRequestBuilders
-
-//                                 .post("/api/auth/token")
-
-//                                 .contentType(MediaType.APPLICATION_JSON)
-
-//                                 .content(objectMapper.writeValueAsString(loginBody)))
-
-//                                 .andExpect(status().isOk())
-
-//                                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-
-//                                 .andExpect(jsonPath("$.token").isNotEmpty());
-
-//         }
-
-// 	}
+// }
