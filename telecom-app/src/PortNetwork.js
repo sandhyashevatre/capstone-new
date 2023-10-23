@@ -28,7 +28,7 @@ export default function PortNetwork(props) {
       JSON.stringify({
         customerNumber: customer,
 
-        phoneNumber: phoneNumber,
+        reservingNumber: phoneNumber,
 
         provider: provider,
 

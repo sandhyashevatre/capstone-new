@@ -10,15 +10,14 @@ import ImeiManager from "./ImeiManager";
 import ReplaceSim from "./ReplaceSim";
 import './App.css';
 import PortNetwork from "./PortNetwork";
+import Reservation from "./Reservation";
 
-
-class App extends Component {
-  render() {
+export default function App(){
     return (
       <>
       <BrowserRouter>
         <div>
-          <nav className="navbar">
+          <nav className='navbar'>
             <Link to="/home" className="navbar-brand">
               Home
             </Link>
@@ -35,6 +34,7 @@ class App extends Component {
                     <ul className="dropdown-menu">
                       <li><Link to="/prepaid" className="dropdown-item">New SIM registration</Link></li>
                       <li><Link to="/portNetwork-prepaid" className="dropdown-item">Port SIM card</Link></li>
+              
                     </ul>
                   </div>
                 </span>
@@ -52,17 +52,33 @@ class App extends Component {
               </li>
               <li className="nav-item dropdown">
                 <span className="nav-link">
+                  Reservation
+                  <div className="dropdown">
+                    <ul className="dropdown-menu">
+                      <li><Link to="/prepaid-reservation" className="dropdown-item">Reserve prepaid </Link></li>
+                      <li><Link to="/postpaid-reservation" className="dropdown-item">Reserve postpaid </Link></li>
+                    </ul>
+                  </div>
+                </span>
+              </li>
+              <li className="nav-item dropdown">
+                <span className="nav-link">
                   Records
                   <div className="dropdown">
                     <ul className="dropdown-menu">
                       <li><Link to="/prepaid-data" className="dropdown-item">Prepaid</Link></li>
                       <li><Link to="/postpaid-data" className="dropdown-item">Postpaid</Link></li>
+                      <hr></hr>
+                      <li><Link to="/insert-sim" className="dropdown-item">Reserve IMEI for a number</Link></li>
                     </ul>
                   </div>
                 </span>
               </li>
             </ul>
             <div className="nav-item">
+              <Link to=""></Link>
+            </div>
+            <div className="nav-item dropdown">
               <Link to="/account" className="nav-link">
                 Login
               </Link>
@@ -76,6 +92,8 @@ class App extends Component {
             <Route path="/postpaid" element={<Postpaid />} /> 
             <Route path="/account" element={<Account />} />
             <Route path="insert-sim" element={<ImeiManager />}/>
+            <Route path="/prepaid-reservation" element={<Reservation connection={{type: 'prepaid'}}/>}/>
+            <Route path="/postpaid-reservation" element={<Reservation connection={{type: 'postpaid'}}/>}/>
             <Route path="portNetwork-prepaid" element={<PortNetwork connection={{type : 'prepaid'}}/>} />
             <Route path="portNetwork-postpaid" element={<PortNetwork connection={{type : 'postpaid'}}/>} />
             <Route path="prepaid-data" element={<Data connection={{type : 'prepaid'}}/>} />
@@ -95,6 +113,4 @@ class App extends Component {
         </div>
       </>
     );
-  }
-}
-export default App;
+  };

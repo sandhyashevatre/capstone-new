@@ -63,9 +63,9 @@ export default function Prepaid() {
     }
   };
   return (
-    <div className="prepaid-container">
-       <p> Note: Register here for prepaid SIM card</p>
-      <form method="POST" className="login-form" onSubmit={onsubmit}>
+    <div className="reservation-container">
+      <form method="POST" className="reservation-form" onSubmit={onsubmit}>
+        <h2>{`prepaid`}</h2>
         <label htmlFor="customer" className="form-label">
           Customer Name
         </label>
@@ -127,19 +127,19 @@ export default function Prepaid() {
         </label>
         <label htmlFor="location" className="form-label">
           Location
-        <input
-          type="text"
-          value={location}
-          name="location"
-          onChange={changelocationhandle}
-          className="form-input"
-        />
+          <input
+            type="text"
+            value={location}
+            name="location"
+            onChange={changelocationhandle}
+            className="form-input"
+          />
         </label>
         <button type="submit" className="button">
           Submit
         </button>
       </form>
     </div>
-  );
+      );
 }
 

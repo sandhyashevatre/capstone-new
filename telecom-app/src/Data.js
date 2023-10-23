@@ -7,36 +7,37 @@ export default function Data(props) {
 
   // Function to fetch SIMs from the API
 
-  const fetchSims = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/all${props.connection.type}sims`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-
-      const simsData = await response.json();
-
-      setSims(simsData);
-    } catch (error) {
-      console.error("Error fetching SIMs:", error);
-    }
-  };
+  
 
   // Use the useEffect hook to fetch SIMs when the component mounts
 
   useEffect(() => {
+    const fetchSims = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/all${props.connection.type}sims`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const simsData = await response.json();
+        console.log(simsData);
+  
+        setSims(simsData);
+      } catch (error) {
+        console.error("Error fetching SIMs:", error);
+      }
+    };
     fetchSims();
-  }, [fetchSims]);
+  }, [props.connection.type]);
 
   return (
     <div className="Data-table">

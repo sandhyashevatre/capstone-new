@@ -1,72 +1,65 @@
-import React, { useState } from "react";
-import "./Postpaid.css";
+import { useState } from "react";
+import "./Reservation.css";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-export default function Postpaid() {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [location, setLocation] = useState("");
-  const [customer, setCustomer] = useState("");
-  const [provider, setProvider] = useState("");
-  const changephonenumberhandle = (event) => {
-    setPhoneNumber(event.target.value);
-  };
-  const changeproviderhandle = (event) => {
-    setProvider(event.target.value);
-  };
-  const changelocationhandle = (event) => {
-    setLocation(event.target.value);
-  };
-  const changecustomerhandle = (event) => {
-    setCustomer(event.target.value);
-  };
-  const onsubmit = async (event) => {
-    event.preventDefault();
-    console.log(
-      JSON.stringify({
-        customerNumber: customer,
-        reservingNumber: phoneNumber,
-        provider: provider,
-        location: location,
-        connectionType: "postpaid",
-      })
-    );
-    try {
-      const response = await fetch("http://localhost:8080/api/reservation", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          customerName: customer,
-          reservingNumber: phoneNumber,
-          provider: provider,
-          location: location,
-          connectionType: "postpaid"
-        }),
-      });
-      if (response.ok) {
-        toast.success("Sim has been registered successfully", {
-          position: "top-right",
-          autoClose: 5000, // Auto close the notification after 5 seconds
+export default function Reservation(props) {
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [location, setLocation] = useState("");
+    const [customer, setCustomer] = useState("");
+    const [provider, setProvider] = useState("");
+    const changephonenumberhandle = (event) => {
+      setPhoneNumber(event.target.value);
+    };
+    const changeproviderhandle = (event) => {
+      setProvider(event.target.value);
+    };
+    const changelocationhandle = (event) => {
+      setLocation(event.target.value);
+    };
+    const changecustomerhandle = (event) => {
+      setCustomer(event.target.value);
+    };
+    const onsubmit = async (e) =>{
+        e.preventDefault();
+        try{
+        const response = await fetch('http://localhost:8080/api/reserve',{
+            method : "POST",
+            headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+            body : JSON.stringify({
+                customerName : customer,
+                provider : provider,
+                reservingNumber : phoneNumber,
+                connectionType : props.connection.type,
+            }),
         });
-        // Reload the page after a short delay (5 seconds)
-        setTimeout(() => {
-          window.location.reload();
-        }, 5000);
-        console.log(await response.json());
-      } else {
-        console.error("Failed to fetch data.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+        if (response.ok) {
+            const data = await response.json();
+    
+            if (data === true) {
+              toast.success("Sim Reserved successfully", {
+                position: "top-center",
+    
+                autoClose: 5000,
+              });
+            } else {
+              toast.error("Sim Reservation Failed", {
+                position: "top-center",
+    
+                autoClose: 5000,
+              });
+            }
+        }
+        }catch(e){
+            console.error(e);
+        }
     }
-  };
   return (
     <div className="reservation-container">
       <form method="POST" className="reservation-form" onSubmit={onsubmit}>
-        <h2>{`postpaid`}</h2>
+        <h2>{`${props.connection.type}`}</h2>
         <label htmlFor="customer" className="form-label">
           Customer Name
         </label>
@@ -143,4 +136,3 @@ export default function Postpaid() {
     </div>
   );
 }
-

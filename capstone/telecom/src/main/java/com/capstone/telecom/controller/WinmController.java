@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import com.capstone.telecom.business.RandomICCID;
@@ -17,12 +20,16 @@ import com.capstone.telecom.entity.ICCID;
 import com.capstone.telecom.entity.IMEI;
 import com.capstone.telecom.entity.MSISDN;
 import com.capstone.telecom.entity.Registration;
+import com.capstone.telecom.entity.Reservation;
 import com.capstone.telecom.entity.User;
 import com.capstone.telecom.repository.CustomerRepository;
 import com.capstone.telecom.repository.ICCIDRepository;
 import com.capstone.telecom.repository.IMEIRepository;
 import com.capstone.telecom.repository.MSISDNRepository;
+import com.capstone.telecom.repository.ReservationRepository;
 import com.capstone.telecom.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @RestController
 @CrossOrigin
@@ -37,6 +44,9 @@ public class WinmController {
 
     @Autowired
     private IMEIRepository imeiRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -193,6 +203,43 @@ public class WinmController {
         }
     }
 
+    @PostMapping("/reserve")
+    public ResponseEntity<Boolean> reserveTheNumberOf(@RequestBody ReservationDTO reservationDTO) {
+        System.out.println(reservationDTO);
+        return ResponseEntity.ok(reserveTheNumber(reservationDTO));
+    }
+
+    @GetMapping("/reservations")
+
+    public ResponseEntity<List<Reservation>> getAllReservations(@RequestParam String customerName) {
+
+        List<Reservation> reservations = getAllReservationsOf(customerName);
+
+        if (reservations != null) {
+
+            return ResponseEntity.ok(reservations);
+
+        }
+
+        else {
+
+            return ResponseEntity.ok(Collections.emptyList());
+
+        }
+
+    }
+
+    @Scheduled(fixedRate = 60000)
+    @Transactional
+    public void activateAfterAMin(){
+        if(activate()){
+            System.out.println("some sim activated");
+        }
+        else{
+            System.out.println("none of the sims are activated");
+        }
+    }
+
     public Boolean activate() {
 
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -216,6 +263,7 @@ public class WinmController {
                 }
 
             }
+            customerRepository.save(customer);
 
         }
 
@@ -226,6 +274,23 @@ public class WinmController {
         }
 
         return true;
+    }
+
+    private List<Reservation> getAllReservationsOf(String customerName) {
+
+        Customer customer = customerRepository.findByName(customerName).orElse(null);
+
+        if (customer == null) {
+
+            return Collections.emptyList();
+
+        }
+
+        else {
+
+            return reservationRepository.findAllByCustomerId(customer.getId());
+
+        }
 
     }
 
@@ -443,6 +508,42 @@ public class WinmController {
             return newCustomer;
 
         });
+
+    }
+
+    // writing a method to store the reservation
+
+    public boolean reserveTheNumber(ReservationDTO reservationDTO) {
+
+        Customer customer = getOrCreateCustomer(reservationDTO.getCustomerName());
+
+        List<Reservation> reservations = reservationRepository.findAll();
+
+        Optional<Reservation> exising = reservations.stream()
+                .filter(reservation -> reservation.getPhoneNumber().equals(reservationDTO.getReservingNumber()))
+                .findFirst();
+
+        if (exising.isPresent()) {
+
+            return false;
+
+        }
+
+        Reservation newReservation = new Reservation();
+
+        newReservation.setConnectionType(reservationDTO.getConnectionType());
+
+        newReservation.setCustomer(customer);
+
+        newReservation.setPhoneNumber(reservationDTO.getReservingNumber());
+
+        newReservation.setProvider(reservationDTO.getProvider());
+
+        newReservation.setReservationDateTime(LocalDateTime.now());
+
+        reservationRepository.save(newReservation);
+
+        return true;
 
     }
 
