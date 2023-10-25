@@ -21,7 +21,7 @@ import com.capstone.telecom.dto.TokenDTO;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:3000","http://172.17.231.120:3000"})
 public class APIAuthController {
 
     @Autowired

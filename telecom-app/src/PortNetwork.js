@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "./PortNetwork.css";
+import React from 'react';
+
 
 export default function PortNetwork(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -112,7 +114,7 @@ export default function PortNetwork(props) {
           />
 
           <label htmlFor="phone-number" className="form-label">
-            Phone Number
+            Mobile Number
           </label>
 
           <input

@@ -1,7 +1,7 @@
 
 .reservation-container {
     padding: 20px;
-    border: 1px solid grey;
+    border: 1px solid rgb(27, 26, 26);
     border-radius: 10px;
     width: 600px;
     margin: 0 auto;
@@ -9,7 +9,7 @@
   
   .reservation-form {
     max-width: 600px;
-    background-color: #4783c6;
+    background-color: rgb(95, 154, 242);
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -40,11 +40,14 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 10px;
+    font-weight: bold;
+    
   }
   
   .radio-label input {
     margin-right: 5px;
     cursor: pointer;
+    font-weight: bold;
   }
   
   .button {

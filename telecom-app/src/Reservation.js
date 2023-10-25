@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Reservation.css";
 import { toast } from "react-toastify";
+import React from 'react';
+
 
 export default function Reservation(props) {
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -59,7 +61,8 @@ export default function Reservation(props) {
   return (
     <div className="reservation-container">
       <form method="POST" className="reservation-form" onSubmit={onsubmit}>
-        <h2>{`${props.connection.type}`}</h2>
+        {/* <h2>{`${props.connection.type}`}</h2> */}
+
         <label htmlFor="customer" className="form-label">
           Customer Name
         </label>
@@ -71,7 +74,7 @@ export default function Reservation(props) {
           className="form-input"
         />
         <label htmlFor="phone-number" className="form-label">
-          Phone Number
+          Mobile Number
         </label>
         <input
           type="text"
@@ -120,7 +123,7 @@ export default function Reservation(props) {
           Aircel
         </label>
         <label htmlFor="location" className="form-label">
-          Location
+          Address
           <input
             type="text"
             value={location}

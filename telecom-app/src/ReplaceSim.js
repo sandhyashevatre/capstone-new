@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import React from 'react';
+
 import "./ReplaceSim.css";
 
 export default function ReplaceSim(props) {
@@ -72,7 +74,6 @@ export default function ReplaceSim(props) {
       if (response.ok) {
         toast.success("Sim has been registered successfully", {
           position: "top-center",
-
           autoClose: 5000, 
         });
 
@@ -105,7 +106,6 @@ export default function ReplaceSim(props) {
         <label htmlFor="phone-number" className="form-label">
           Phone Number
         </label>
-
         <input
           type="text"
           value={phoneNumber}

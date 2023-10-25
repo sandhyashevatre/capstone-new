@@ -36,6 +36,10 @@ import jakarta.transaction.Transactional;
 @RequestMapping("/api")
 public class WinmController {
 
+    // Constants
+    private static final String PREPAID_CONNECTION = "prepaid";
+    private static final String POSTPAID_CONNECTION = "postpaid";
+
     @Autowired
     private ICCIDRepository iccidRepository;
 
@@ -231,11 +235,10 @@ public class WinmController {
 
     @Scheduled(fixedRate = 60000)
     @Transactional
-    public void activateAfterAMin(){
-        if(activate()){
+    public void activateAfterAMin() {
+        if (activate()) {
             System.out.println("some sim activated");
-        }
-        else{
+        } else {
             System.out.println("none of the sims are activated");
         }
     }
@@ -305,213 +308,105 @@ public class WinmController {
     }
 
     public boolean imeiAlreadyExist(String imei) {
-
-        List<Customer> customers = customerRepository.findAll();
-
-        for (Customer customer : customers) {
-
-            for (Registration sim : customer.getRegistrations()) {
-
-                if (sim.getImei() == null) {
-
-                    return false;
-
-                }
-
-                if (sim.getImei().getImeiNumber().equals(imei))
-
-                    return true;
-
-            }
-
-        }
-
-        return false;
-
+        return customerRepository.findAll().stream()
+                .anyMatch(customer -> customer.getRegistrations().stream()
+                        .anyMatch(sim -> sim.getImei() != null && sim.getImei().getImeiNumber().equals(imei)));
     }
 
     public Boolean setSIMInPhoneWithIMEI(String imeiNumber, String phoneNumber) {
-
         List<Customer> customers = customerRepository.findAll();
-
         for (Customer customer : customers) {
-
             for (Registration sim : customer.getRegistrations()) {
-
                 if (imeiAlreadyExist(imeiNumber)) {
-
                     return false;
-
                 }
-
                 if (sim.getMsisdn().getMsisdnNumber().equals(phoneNumber)) {
-
                     IMEI newImei = new IMEI();
-
                     newImei.setImeiNumber(imeiNumber);
-
                     sim.setImei(newImei);
-
                     imeiRepository.save(newImei);
-
                     customerRepository.save(customer);
-
                     return true;
-
                 }
-
             }
-
         }
-
         return false;
-
     }
 
     public List<Registration> getAllPrepaidSims() {
-
         List<Registration> allSims = new ArrayList<>();
-
         List<Customer> customers = customerRepository.findAll();
-
         for (Customer customer : customers) {
-
             for (Registration sim : customer.getRegistrations()) {
-
-                if (sim.getConnectionType().equals("prepaid"))
-
+                if (sim.getConnectionType().equals(PREPAID_CONNECTION))
                     allSims.add(sim);
-
             }
-
         }
-
         return allSims;
-
     }
 
     public Boolean changeProvider(ReservationDTO reservationDTO) {
-
         Customer customer = getOrCreateCustomer(reservationDTO.getCustomerName());
-
         Boolean status = changeProviderTo(reservationDTO.getReservingNumber(), reservationDTO.getProvider(), customer,
                 reservationDTO.getConnectionType());
-
         return status;
-
     }
 
     public Boolean changeProviderTo(String msisdn, String provider, Customer customer, String connectionType) {
-
         Boolean flag = false;
-
         for (Registration sim : customer.getRegistrations()) {
-
-            if (sim.getMsisdn().getMsisdnNumber().equals(msisdn)) {
-
-                if (sim.getIccid().getNetworkProvider().equals(provider))
-
-                    return flag;
-
-                else {
-
-                    ICCID newIccid = new ICCID();
-
-                    newIccid.setIccidNumber(RandomICCID.generate(provider));
-
-                    newIccid.setNetworkProvider(provider);
-
-                    sim.setIccid(newIccid);
-
-                    sim.setConnectionType(connectionType);
-
-                    sim.setActivated(false);
-
-                    sim.setRegistrationtTime(LocalDateTime.now());
-
-                    iccidRepository.save(newIccid);
-
-                    flag = true;
-
-                }
-
+            if (sim.getMsisdn().getMsisdnNumber().equals(msisdn)
+                    && !sim.getIccid().getNetworkProvider().equals(provider)) {
+                ICCID newIccid = new ICCID();
+                newIccid.setIccidNumber(RandomICCID.generate(provider));
+                newIccid.setNetworkProvider(provider);
+                sim.setIccid(newIccid);
+                sim.setConnectionType(connectionType);
+                sim.setActivated(false);
+                sim.setRegistrationtTime(LocalDateTime.now());
+                iccidRepository.save(newIccid);
+                flag = true;
             }
-
         }
-
         customerRepository.save(customer);
-
         return flag;
-
     }
 
     public List<Registration> getAllPostpaidSims() {
-
         List<Registration> allSims = new ArrayList<>();
-
         List<Customer> customers = customerRepository.findAll();
-
         for (Customer customer : customers) {
-
             for (Registration sim : customer.getRegistrations()) {
-
-                if (sim.getConnectionType().equals("postpaid"))
-
+                if (sim.getConnectionType().equals(POSTPAID_CONNECTION))
                     allSims.add(sim);
-
             }
-
         }
-
         return allSims;
-
     }
 
     public List<SimDTO> convertToDTO(List<Registration> sims) {
-
         List<SimDTO> simDTOs = new ArrayList<>();
-
         for (Registration sim : sims) {
-
             SimDTO simDTO = new SimDTO();
-
             simDTO.setId(sim.getId());
-
             simDTO.setIccid(sim.getIccid().getIccidNumber());
-
             simDTO.setMsisdn(sim.getMsisdn().getMsisdnNumber());
-
             simDTO.setImei(sim.getImei() == null ? "" : sim.getImei().getImeiNumber());
-
             simDTO.setActivated(sim.isActivated());
-
             simDTO.setReservationDateTime(sim.getRegistrationtTime().toLocalDate().toString());
-
             simDTOs.add(simDTO);
-
         }
-
         return simDTOs;
-
     }
 
     public Customer getOrCreateCustomer(String customerName) {
-
         return customerRepository.findByName(customerName).orElseGet(() -> {
-
             Customer newCustomer = new Customer();
-
             newCustomer.setName(customerName);
-
-            customerRepository.save(newCustomer);
-
-            return newCustomer;
-
+            return customerRepository.save(newCustomer);
         });
-
     }
 
-    // writing a method to store the reservation
 
     public boolean reserveTheNumber(ReservationDTO reservationDTO) {
 
@@ -546,5 +441,64 @@ public class WinmController {
         return true;
 
     }
+
+//newmethods
+@GetMapping("/allinactivesims")
+public ResponseEntity<List<SimDTO>> getAllInactiveSims() {
+    List<Registration> sims = getAllInactiveSims();
+    if (sims != null) {
+        List<SimDTO> simDTOs = convertToDTO(sims);
+        return ResponseEntity.ok(simDTOs);
+    } else {
+        return ResponseEntity.ok(Collections.emptyList());
+    }
+}
+
+@GetMapping("/allreservedsims")
+public ResponseEntity<List<SimDTO>> getAllReservedSims() {
+    List<Reservation> reservations = getAllReservedSims();
+    if (reservations != null) {
+        List<SimDTO> simDTOs = convertReservationsToDTO(reservations);
+        return ResponseEntity.ok(simDTOs);
+    } else {
+        return ResponseEntity.ok(Collections.emptyList());
+    }
+}
+
+public List<Registration> getAllInactiveSims() {
+    List<Registration> allSims = new ArrayList<>();
+    List<Customer> customers = customerRepository.findAll();
+    for (Customer customer : customers) {
+        if (customer.getRegistrations() != null) {
+            for (Registration sim : customer.getRegistrations()) {
+                if (!sim.isActivated()) {
+                    allSims.add(sim);
+                }
+            }
+        }
+    }
+    return allSims;
+}
+
+public List<Reservation> getAllReservedSims() {
+    List<Reservation> reservations = reservationRepository.findAll();
+    return reservations;
+}
+
+public List<SimDTO> convertReservationsToDTO(List<Reservation> reservations) {
+    List<SimDTO> simDTOs = new ArrayList<>();
+    for (Reservation reservation : reservations) {
+        SimDTO simDTO = new SimDTO();
+        simDTO.setId(reservation.getId());
+        simDTO.setIccid(""); // You can set ICCID to empty string for reservations
+        simDTO.setMsisdn(reservation.getPhoneNumber());
+        simDTO.setImei("");
+        simDTO.setActivated(false);
+        simDTO.setReservationDateTime(reservation.getReservationDateTime().toLocalDate().toString());
+        simDTOs.add(simDTO);
+    }
+    return simDTOs;
+}
+
 
 }

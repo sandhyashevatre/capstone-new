@@ -12,16 +12,19 @@
   padding: 0.5rem 1rem;
   color: #fff;
 }
-
 .navbar-nav {
   list-style: none; 
   display: flex; 
   padding: 0;
 }
 
+.nav-login {
+  margin-right: 2%;
+}
+
 .nav-item {
   margin-left: 1rem; 
-  font-size: 1.5em;
+  font-size: 1.2em;
   display: inline;
 }
 
@@ -39,17 +42,16 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: #333;
+  background-color: #fff;
   border: none;
   min-width: 200px;
 }
 
 .dropdown:hover .dropdown-menu {
-  display: block; /* Corrected from 'white' to 'block' */
+  display: block; 
 }
 
 .dropdown-item {
-  color: #fff;
   padding: 0.5rem 1rem;
 }
 
@@ -59,23 +61,31 @@
 }
 
 .social-links a {
-  color: #130f0f;
+  color: #fff;
   text-decoration: none; 
   margin: 0 10px; 
   font-size: 18px; 
   align-items: center;
   transition: color 0.3s ease;
+
+
 }
 
+.navbar-brand:hover{
+  color:lightskyblue;
+}
 
 .social-links a:hover {
-  color: #fff;
+  color: #e5e911;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  display: flex; 
+  position: fixed;
+  bottom: 0; 
+  width: 100%; 
+  background-color: #1e0f8a;
+  display: flex;
   justify-content: center;
+  padding: 5px;
+  color: #fff;
 }

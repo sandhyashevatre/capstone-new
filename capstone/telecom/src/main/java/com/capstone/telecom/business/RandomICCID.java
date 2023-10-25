@@ -1,14 +1,14 @@
 package com.capstone.telecom.business;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class RandomICCID {
 
     private static final String DIGITS = "1234567890";
+    private static  SecureRandom r = new SecureRandom();
 
     public static String generate(String provider) {
 
-        Random r = new Random();
 
         String ICCID = "";
 

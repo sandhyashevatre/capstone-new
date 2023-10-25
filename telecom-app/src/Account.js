@@ -26,7 +26,7 @@ export default function Account() {
         if (response.ok) {
           const data = await response.json();
           localStorage.setItem('token', data.token);
-
+          localStorage.setItem('username',username);  
           history('/home')
         } else {
           console.error("Failed to fetch data.");

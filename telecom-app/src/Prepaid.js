@@ -65,7 +65,7 @@ export default function Prepaid() {
   return (
     <div className="reservation-container">
       <form method="POST" className="reservation-form" onSubmit={onsubmit}>
-        <h2>{`prepaid`}</h2>
+        <h2>{`Prepaid`}</h2>
         <label htmlFor="customer" className="form-label">
           Customer Name
         </label>
@@ -77,7 +77,7 @@ export default function Prepaid() {
           className="form-input"
         />
         <label htmlFor="phone-number" className="form-label">
-          Phone Number
+          Mobile Number
         </label>
         <input
           type="text"
@@ -87,7 +87,7 @@ export default function Prepaid() {
           className="form-input"
         />
         <label htmlFor="provider" className="form-label radio-label">
-          Networks
+          Select SIM  
         </label>
         <label className="radio-label">
           <input
@@ -126,7 +126,7 @@ export default function Prepaid() {
           Aircel
         </label>
         <label htmlFor="location" className="form-label">
-          Location
+          Address
           <input
             type="text"
             value={location}

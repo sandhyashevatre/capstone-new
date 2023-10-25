@@ -1,3 +1,4 @@
+import React from 'react';
 
 import ImageSlider from "./ImageSlider";
 
@@ -13,6 +14,7 @@ export default function Home() {
   ];
   return (
     <div>
+      <h1>Home Page</h1>
       <div className="imageslider">
           <ImageSlider images={images} glideDuration={5000} />
       </div>

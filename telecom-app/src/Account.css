@@ -1,6 +1,6 @@
 /* Account.css */
 .account-container {
-    background-color: #6b9bcb; /* Blue color */
+    background-color:  #1e0f8a; /* Blue color */
     padding: 10px;
     border-radius: 5px;
     width: 300px;
@@ -10,6 +10,7 @@
   .login-form {
     color: white;
     text-align: center;
+
     
   }
   
@@ -27,8 +28,8 @@
   }
   
   .login-form button {
-    background-color: #fff; /* Slightly darker blue for the button */
-    color: rgb(19, 18, 18);
+    background-color: #1e0f8a; /* Slightly darker blue for the button */
+    color: #fff;
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -40,6 +41,6 @@
   }
   
   .login-form button:hover {
-    background-color: #40d6de; /* Darker blue on hover */
+    background-color: #1538e7; /* Darker blue on hover */
   }
   

@@ -1,6 +1,7 @@
 package com.capstone.telecom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.capstone.telecom.dto.InsertSimDTO;
 import com.capstone.telecom.dto.ReservationDTO;
 import com.capstone.telecom.dto.SimDTO;
+import com.capstone.telecom.dto.TokenDTO;
 import com.capstone.telecom.entity.ICCID;
 import com.capstone.telecom.entity.IMEI;
 import com.capstone.telecom.entity.MSISDN;
@@ -16,7 +18,7 @@ import com.capstone.telecom.repository.IMEIRepository;
 import com.capstone.telecom.repository.MSISDNRepository;
 
 @DataJpaTest
-public class EntityTest {
+class EntityTest {
 
     @Autowired
     private ICCIDRepository iccidRepository;
@@ -28,7 +30,7 @@ public class EntityTest {
     private IMEIRepository imeiRepository;
 
     @Test
-    public void testSaveICCID() {
+    void testSaveICCID() {
         ICCID iccid = new ICCID();
         iccid.setIccidNumber("12345678901234567890");
 
@@ -37,7 +39,7 @@ public class EntityTest {
     }
 
     @Test
-    public void testFindICCIDByIccidNumber() {
+    void testFindICCIDByIccidNumber() {
         ICCID iccid = new ICCID();
         iccid.setIccidNumber("12345678901234567890");//20 digits
 
@@ -47,8 +49,8 @@ public class EntityTest {
         assertNotNull(foundICCID);
     }
 
-      @Test
-    public void testSaveMSISDN() {
+    @Test
+    void testSaveMSISDN() {
         MSISDN msisdn = new MSISDN();
         msisdn.setMsisdnNumber("1234567890");
 
@@ -57,7 +59,7 @@ public class EntityTest {
     }
 
     @Test
-    public void testFindMSISDNByMsisdnNumber() {
+    void testFindMSISDNByMsisdnNumber() {
         MSISDN msisdn = new MSISDN();
         msisdn.setMsisdnNumber("1234567890");
 
@@ -70,7 +72,7 @@ public class EntityTest {
     
 
     @Test
-    public void testFindIMEIByImeiNumber() {
+    void testFindIMEIByImeiNumber() {
         IMEI imei = new IMEI();
         imei.setImeiNumber("123456789012345");
 
@@ -80,8 +82,8 @@ public class EntityTest {
         assertNotNull(foundIMEI);
     }
 
-        @Test
-        void testReservationDTO() {
+    @Test
+    void testReservationDTO() {
         ReservationDTO reservationDTO = new ReservationDTO();
         reservationDTO.setCustomerName("John Doe");
         reservationDTO.setProvider("Telecom Co.");
@@ -124,7 +126,53 @@ public class EntityTest {
         assertEquals("2023-10-20T10:00:00", simDTO.getReservationDateTime());
         assertEquals(true, simDTO.isActivated());
         assertEquals("John Doe", simDTO.getCustomerName());
-    }   
+    }  
+    
+    @Test
+    void testTokenDTOGettersAndSetters() {
+        // Arrange
+        TokenDTO tokenDTO = new TokenDTO();
+
+        // Act
+        tokenDTO.setToken("myToken");
+
+        // Assert
+        assertEquals("myToken", tokenDTO.getToken());
+    }
+
+    @Test
+    void testTokenDTOEquality() {
+        // Arrange
+        TokenDTO tokenDTO1 = new TokenDTO();
+        tokenDTO1.setToken("token1");
+
+        TokenDTO tokenDTO2 = new TokenDTO();
+        tokenDTO2.setToken("token1");
+
+        TokenDTO tokenDTO3 = new TokenDTO();
+        tokenDTO3.setToken("token2");
+
+        // Act & Assert
+        assertEquals(tokenDTO1, tokenDTO2); // Tokens are the same, so the DTOs should be equal.
+        assertNotEquals(tokenDTO1, tokenDTO3); // Tokens are different, so the DTOs should not be equal.
+    }
+
+    @Test
+    void testTokenDTOHashCode() {
+        // Arrange
+        TokenDTO tokenDTO1 = new TokenDTO();
+        tokenDTO1.setToken("token1");
+
+        TokenDTO tokenDTO2 = new TokenDTO();
+        tokenDTO2.setToken("token1");
+
+        TokenDTO tokenDTO3 = new TokenDTO();
+        tokenDTO3.setToken("token2");
+
+        // Act & Assert
+        assertEquals(tokenDTO1.hashCode(), tokenDTO2.hashCode()); // Tokens are the same, so hash codes should be equal.
+        assertNotEquals(tokenDTO1.hashCode(), tokenDTO3.hashCode()); // Tokens are different, so hash codes should not be equal.
+    }
 
 
 }

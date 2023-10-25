@@ -13,11 +13,20 @@ import lombok.Data;
 @Data
 public class MSISDN {
 
+    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Pattern(regexp = "[1-9][0-9]{9}$", message = "Msisdn Should be 10 digits")
     private String msisdnNumber;
+
+    public MSISDN(String phoneNumber) {
+        this.msisdnNumber=phoneNumber;
+    }
+
+    public MSISDN() {
+    }
 
 }

@@ -66,7 +66,7 @@ export default function Postpaid() {
   return (
     <div className="reservation-container">
       <form method="POST" className="reservation-form" onSubmit={onsubmit}>
-        <h2>{`postpaid`}</h2>
+        <h2>{`Postpaid`}</h2>
         <label htmlFor="customer" className="form-label">
           Customer Name
         </label>

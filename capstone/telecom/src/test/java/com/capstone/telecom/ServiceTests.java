@@ -4,12 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import com.capstone.telecom.entity.User;
 import com.capstone.telecom.repository.UserRepository;
-import com.capstone.telecom.service.CustomUserDetailsService;
 import com.capstone.telecom.service.DomainUserService;
 import com.capstone.telecom.service.UserService;
 

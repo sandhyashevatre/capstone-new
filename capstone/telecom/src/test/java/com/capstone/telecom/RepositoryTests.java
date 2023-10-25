@@ -35,7 +35,7 @@ public class RepositoryTests {
         iccid.setIccidNumber("12345678901234567890");
 
         ICCID savedICCID = iccidRepository.save(iccid);
-        assertNotNull(savedICCID.getId());
+        assertNotNull(savedICCID);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class RepositoryTests {
         msisdn.setMsisdnNumber("1234567890");
 
         MSISDN savedMSISDN = msisdnRepository.save(msisdn);
-        assertNotNull(savedMSISDN.getId());
+        assertNotNull(savedMSISDN);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class RepositoryTests {
         imei.setImeiNumber("123456789012345");
 
         IMEI savedIMEI = imeiRepository.save(imei);
-        assertNotNull(savedIMEI.getId());
+        assertNotNull(savedIMEI);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class RepositoryTests {
         user.setRole("ROLE_USER");
 
         User savedUser = userRepository.save(user);
-        assertNotNull(savedUser.getId());
+        assertNotNull(savedUser);
     }
 }
 

@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 
-import "./Data.css"; // Import the CSS file
+
+import "./Data.css"; 
 
 export default function Data(props) {
   const [sims, setSims] = useState([]);
 
-  // Function to fetch SIMs from the API
-
-  
-
-  // Use the useEffect hook to fetch SIMs when the component mounts
 
   useEffect(() => {
     const fetchSims = async () => {
