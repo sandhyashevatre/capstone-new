@@ -1,7 +1,15 @@
 ## **CAPSTONE PROJECT**
 
-## Expected:
+## Expected anchor links:
+
+[Backend Code with Documentation](#backend-code-with-documentation)
+
+[Frontend Code with Documentation](#frontend-code-with-documentation)
+
 [ER Diagram / Database Model Visualization](#er-diagram--database-model-visualization)
+
+[Test Coverage Report](#test-coverage-report)
+
 
 # **Wireless Inventory Number Management**
 
@@ -155,12 +163,6 @@ Cross-Browser Compatibility: The frontend will be designed to function seamlessl
 - Simple Forms: The UI will incorporate straightforward forms for number reservation.
 - Intuitive Layout: The layout will be designed with user intuitiveness in mind, enhancing the tracking of reservations.
 
- ## ER Diagram / Database Model Visualization 
-
-The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
-
-![ER view](database.png)
-
 ## **7. API Specification**
 
 The system will define RESTful API endpoints with specifications covering:
@@ -251,4 +253,18 @@ Do we have user personas or profiles to consider?
 
 1. What security measures need to be in place to protect user data?
 2. Are there privacy regulations to comply with?
+
+# Expected updates :
+
+## Backend Code with Documentation
+
+## Frontend Code with Documentation
+
+## ER Diagram / Database Model Visualization
+
+The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
+
+![ER view](database.png)
+
+## Test Coverage Report
 
