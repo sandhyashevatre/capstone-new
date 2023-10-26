@@ -155,7 +155,7 @@ Cross-Browser Compatibility: The frontend will be designed to function seamlessl
 - Simple Forms: The UI will incorporate straightforward forms for number reservation.
 - Intuitive Layout: The layout will be designed with user intuitiveness in mind, enhancing the tracking of reservations.
 
-## **6. ## ER Diagram / Database Model Visualization **
+ ## ER Diagram / Database Model Visualization 
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
 
