@@ -394,6 +394,8 @@ public class WinmController {
             simDTO.setImei(sim.getImei() == null ? "" : sim.getImei().getImeiNumber());
             simDTO.setActivated(sim.isActivated());
             simDTO.setReservationDateTime(sim.getRegistrationtTime().toLocalDate().toString());
+            simDTO.setConnectionType(sim.getConnectionType());
+            simDTO.setNetworkProvider(sim.getIccid().getNetworkProvider());
             simDTOs.add(simDTO);
         }
         return simDTOs;
@@ -406,7 +408,6 @@ public class WinmController {
             return customerRepository.save(newCustomer);
         });
     }
-
 
     public boolean reserveTheNumber(ReservationDTO reservationDTO) {
 
@@ -426,13 +427,10 @@ public class WinmController {
 
         Reservation newReservation = new Reservation();
 
-        newReservation.setConnectionType(reservationDTO.getConnectionType());
 
         newReservation.setCustomer(customer);
 
         newReservation.setPhoneNumber(reservationDTO.getReservingNumber());
-
-        newReservation.setProvider(reservationDTO.getProvider());
 
         newReservation.setReservationDateTime(LocalDateTime.now());
 
@@ -442,63 +440,63 @@ public class WinmController {
 
     }
 
-//newmethods
-@GetMapping("/allinactivesims")
-public ResponseEntity<List<SimDTO>> getAllInactiveSims() {
-    List<Registration> sims = getAllInactiveSims();
-    if (sims != null) {
-        List<SimDTO> simDTOs = convertToDTO(sims);
-        return ResponseEntity.ok(simDTOs);
-    } else {
-        return ResponseEntity.ok(Collections.emptyList());
+    // newmethods
+    @GetMapping("/allinactivesims")
+    public ResponseEntity<List<SimDTO>> getAllInactiveSimsOf() {
+        List<Registration> sims = getAllInactiveSims();
+        if (sims != null) {
+            List<SimDTO> simDTOs = convertToDTO(sims);
+            return ResponseEntity.ok(simDTOs);
+        } else {
+            return ResponseEntity.ok(Collections.emptyList());
+        }
     }
-}
 
-@GetMapping("/allreservedsims")
-public ResponseEntity<List<SimDTO>> getAllReservedSims() {
-    List<Reservation> reservations = getAllReservedSims();
-    if (reservations != null) {
-        List<SimDTO> simDTOs = convertReservationsToDTO(reservations);
-        return ResponseEntity.ok(simDTOs);
-    } else {
-        return ResponseEntity.ok(Collections.emptyList());
+    @GetMapping("/allreservedsims")
+    public ResponseEntity<List<SimDTO>> getAllReservedSimsof() {
+
+        List<Reservation> reservations = getAllReservedSims();
+        if (reservations != null) {
+            List<SimDTO> simDTOs = convertReservationsToDTO(reservations);
+            return ResponseEntity.ok(simDTOs);
+        } else {
+            return ResponseEntity.ok(Collections.emptyList());
+        }
     }
-}
 
-public List<Registration> getAllInactiveSims() {
-    List<Registration> allSims = new ArrayList<>();
-    List<Customer> customers = customerRepository.findAll();
-    for (Customer customer : customers) {
-        if (customer.getRegistrations() != null) {
-            for (Registration sim : customer.getRegistrations()) {
-                if (!sim.isActivated()) {
-                    allSims.add(sim);
+    public List<Registration> getAllInactiveSims() {
+        List<Registration> allSims = new ArrayList<>();
+        List<Customer> customers = customerRepository.findAll();
+        for (Customer customer : customers) {
+            if (customer.getRegistrations() != null) {
+                for (Registration sim : customer.getRegistrations()) {
+                    if (!sim.isActivated()) {
+                        allSims.add(sim);
+                    }
                 }
             }
         }
+        return allSims;
     }
-    return allSims;
-}
 
-public List<Reservation> getAllReservedSims() {
-    List<Reservation> reservations = reservationRepository.findAll();
-    return reservations;
-}
-
-public List<SimDTO> convertReservationsToDTO(List<Reservation> reservations) {
-    List<SimDTO> simDTOs = new ArrayList<>();
-    for (Reservation reservation : reservations) {
-        SimDTO simDTO = new SimDTO();
-        simDTO.setId(reservation.getId());
-        simDTO.setIccid(""); // You can set ICCID to empty string for reservations
-        simDTO.setMsisdn(reservation.getPhoneNumber());
-        simDTO.setImei("");
-        simDTO.setActivated(false);
-        simDTO.setReservationDateTime(reservation.getReservationDateTime().toLocalDate().toString());
-        simDTOs.add(simDTO);
+    public List<Reservation> getAllReservedSims() {
+        List<Reservation> reservations = reservationRepository.findAll();
+        return reservations;
     }
-    return simDTOs;
-}
 
-
+    public List<SimDTO> convertReservationsToDTO(List<Reservation> reservations) {
+        List<SimDTO> simDTOs = new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            SimDTO simDTO = new SimDTO();
+            simDTO.setId(reservation.getId());
+            simDTO.setIccid("");
+            simDTO.setMsisdn(reservation.getPhoneNumber());
+            simDTO.setImei("");
+            simDTO.setActivated(false);
+            simDTO.setReservationDateTime(reservation.getReservationDateTime().toLocalDate().toString());
+            simDTO.setCustomerName(reservation.getCustomer().getName());
+            simDTOs.add(simDTO);
+        }
+        return simDTOs;
+    }
 }

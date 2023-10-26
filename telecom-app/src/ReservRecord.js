@@ -14,7 +14,12 @@ export default function ReserRecords() {
   const fetchSims = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/number/allreservations`
+        `http://localhost:8080/api/allreservedsims`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+              },
+        }
       );
 
       if (!response.ok) {
@@ -48,11 +53,9 @@ export default function ReserRecords() {
 
             <th>MSISDN Number</th>
 
-            <th>provider</th>
+            <th>Customer Name</th>
 
             <th>Reservation Date</th>
-
-            <th>ConnectionType</th>
           </tr>
         </thead>
 
@@ -61,15 +64,13 @@ export default function ReserRecords() {
             <tr key={sim.id}>
               <td>{sim.id}</td>
 
-              <td>{sim.phoneNumber}</td>
+              <td>{sim.msisdn}</td>
 
               <td>
-                {sim.provider}
+                {sim.customerName}
               </td>
 
-              <td>{formatDateTime(sim.reservationDateTime)}</td>
-
-              <td>{sim.connectionType}</td>
+              <td>{sim.reservationDateTime}</td>
             </tr>
           ))}
         </tbody>

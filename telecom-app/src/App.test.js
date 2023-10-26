@@ -39,7 +39,7 @@ test('renders the Records link', () => {
 
 test('renders the Account link', () => {
   render(<App />);
-  const accountLink = screen.getByText("Account");
+  const accountLink = screen.getByText('Account');
   expect(accountLink).toBeInTheDocument();
 });
 
@@ -61,4 +61,4 @@ test('navigates to the Home page when the Home link is clicked', () => {
   expect(homePageHeader).toBeInTheDocument();
 });
 
-// Similarly, you can write test cases for other navigation links.
+

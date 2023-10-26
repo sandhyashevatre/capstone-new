@@ -1,15 +1,27 @@
 
 .prepaid-container {
   padding: 20px;
-  border: 1px solid grey;
+  border: 1px solid rgb(13, 6, 160);
   border-radius: 10px;
-  width: 600px;
+  width: 500px;
   margin: 0 auto;
+ 
+}
+
+img{
+  padding: 10%;
+  display: flex;
+  width: 60%;
+  height: 60%;
+}
+
+.SIMPro{
+  display : flex;
 }
 
 .login-form {
   max-width: 600px;
-  background-color: #290c71;
+  background-color: #a3c9f2;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;

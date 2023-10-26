@@ -19,4 +19,8 @@ public class SimDTO {
 
     private String customerName;
 
+    private String connectionType;
+    
+    private String networkProvider;
+
 }

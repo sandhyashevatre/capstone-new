@@ -10,8 +10,8 @@ export default function Home() {
     "/images/IS4.png",
     "/images/IS5.png",
     "/images/IS6.png",
-    // Add more image URLs as needed
   ];
+
   return (
     <div>
       <h1>Home Page</h1>

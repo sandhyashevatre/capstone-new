@@ -71,8 +71,9 @@ export default function ImeiManager() {
     <>
       <div className="imei-container">
         <form method="POST" className="imei-form" onSubmit={onsubmit}>
+        <h1>Provide IMEI number</h1>
           <label htmlFor="IMEINumber" className="form-label">
-            IMEI Number
+            Enter IMEI Number
           </label>
 
           <input

@@ -18,8 +18,45 @@ import Reservation from "./Reservation";
 import InactiveRecord from "./InactiveRecord";
 import ReservRecord from "./ReservRecord";
 
+
 export default function App() {
   const [userState, setUserState] = useState("LOGIN");
+
+  const [prepaid,setPrepaid] = useState('');
+  const changetheshowprepaid = (e) => {
+    e.preventDefault();
+    if(prepaid === 'block')
+      setPrepaid('none');
+    else
+      setPrepaid('block');
+  }
+
+  const [postpaid,setPostpaid] = useState('');
+  const changetheshowpostpaid = (e) => {
+    e.preventDefault();
+    if(postpaid === 'block')
+      setPostpaid('none');
+    else
+      setPostpaid('block');
+  }
+
+  const [reservation,setReservation] = useState('');
+  const changetheshowReservation = (e) => {
+    e.preventDefault();
+    if(reservation === 'block')
+      setReservation('none');
+    else
+      setReservation('block');
+  }
+
+  const [Records,setRecords] = useState('');
+  const changetheshowRecords = (e) => {
+    e.preventDefault();
+    if(Records === 'block')
+      setRecords('none');
+    else
+      setRecords('block');
+  }
 
   const toggleUserState = () => {
     setUserState(userState === "LOGIN" ? "LOGOUT" : "LOGIN");
@@ -30,6 +67,7 @@ export default function App() {
       localStorage.removeItem("token");
     }
   }, [userState]);
+  
   return (
     <>
       <BrowserRouter>
@@ -40,11 +78,11 @@ export default function App() {
               <Link to="/home" className="navbar-brand">
                 Home
               </Link>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown" onClick={changetheshowprepaid}>
                 <span className="nav-link">
                   Prepaid
                   <div className="dropdown">
-                    <ul className="dropdown-menu">
+                    <ul className="dropdown-menu" style={{display : prepaid}}>
                       <li>
                         <Link to="/prepaid" className="dropdown-item">
                           New SIM registration
@@ -62,11 +100,11 @@ export default function App() {
                   </div>
                 </span>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown" onClick={changetheshowpostpaid}>
                 <span className="nav-link">
                   Postpaid
                   <div className="dropdown">
-                    <ul className="dropdown-menu">
+                  <ul className="dropdown-menu" style={{display : postpaid}}>
                       <li>
                         <Link to="/postpaid" className="dropdown-item">
                           New SIM registration
@@ -84,11 +122,11 @@ export default function App() {
                   </div>
                 </span>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown" onClick={changetheshowReservation}>
                 <span className="nav-link">
                   Reservation
                   <div className="dropdown">
-                    <ul className="dropdown-menu">
+                  <ul className="dropdown-menu" style={{display : reservation}}>
                       <li>
                         <Link
                           to="/prepaid-reservation"
@@ -109,11 +147,11 @@ export default function App() {
                   </div>
                 </span>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown" onClick={changetheshowRecords}>
                 <span className="nav-link">
                   Records
                   <div className="dropdown">
-                    <ul className="dropdown-menu">
+                  <ul className="dropdown-menu" style={{display : Records}}>
                       <li>
                         <Link to="/prepaid-data" className="dropdown-item">
                           Prepaid

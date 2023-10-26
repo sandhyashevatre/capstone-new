@@ -5,7 +5,15 @@ div {
     align-items: center;
     height: 100vh;
   }
-  
+  img{
+    padding: 5%;
+    display: flex;
+    width: 60%;
+    height: 60%;
+  }
+  .perks{
+    display : flex;
+  }
   /* Style for the form */
   .login-form {
     background: #f2f2f2;

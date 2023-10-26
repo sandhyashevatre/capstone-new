@@ -28,10 +28,6 @@ public class Reservation {
 
     private String phoneNumber;
 
-    private String provider;
-
-    private String connectionType;
-
     @ManyToOne
 
     private Customer customer;

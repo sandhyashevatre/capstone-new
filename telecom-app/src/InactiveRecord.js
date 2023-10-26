@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./InactiveRecord.css";
 
-export default function InactiveRecords() {
+export default function InactiveRecord() {
   const [sims, setSims] = useState([]);
 
   const formatDateTime = (isoDateTime) => {
@@ -13,9 +13,14 @@ export default function InactiveRecords() {
   const fetchSims = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/number/inactivesims`
+        `http://localhost:8080/api/allinactivesims`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+              },
+        }
       );
-
+        console.log(response,"what is going on");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -51,7 +56,6 @@ export default function InactiveRecords() {
             <th>ConnectionType</th>
           </tr>
         </thead>
-
         <tbody>
           {sims.map((sim) => (
             <tr key={sim.id}>
@@ -59,7 +63,7 @@ export default function InactiveRecords() {
 
               <td>{sim.msisdn}</td>
 
-              <td>{formatDateTime(sim.issuedDateTime)}</td>
+              <td>{sim.reservationDateTime}</td>
 
               <td>{sim.connectionType}</td>
             </tr>

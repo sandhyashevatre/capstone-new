@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Prepaid() {
+  const images = [
+    "/images/s2.png",
+  ];
   const [phoneNumber, setPhoneNumber] = useState("");
   const [location, setLocation] = useState("");
   const [customer, setCustomer] = useState("");
@@ -63,7 +66,9 @@ export default function Prepaid() {
     }
   };
   return (
-    <div className="reservation-container">
+    <div className="SIMPro">
+    <img src={images} alt="s2"/>
+    <div className="prepaid-container">
       <form method="POST" className="reservation-form" onSubmit={onsubmit}>
         <h2>{`Prepaid`}</h2>
         <label htmlFor="customer" className="form-label">
@@ -139,6 +144,7 @@ export default function Prepaid() {
           Submit
         </button>
       </form>
+    </div>
     </div>
       );
 }

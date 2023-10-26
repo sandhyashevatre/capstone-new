@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import React from 'react';
-
-
 import "./Data.css"; 
 
 export default function Data(props) {

@@ -47,9 +47,6 @@
   min-width: 200px;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block; 
-}
 
 .dropdown-item {
   padding: 0.5rem 1rem;

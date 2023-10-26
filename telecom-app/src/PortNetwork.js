@@ -5,6 +5,10 @@ import React from 'react';
 
 
 export default function PortNetwork(props) {
+
+  const images = [
+    "/images/port0.png",
+  ];
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const [customer, setCustomer] = useState("");
@@ -95,6 +99,8 @@ export default function PortNetwork(props) {
 
   return (
     <>
+    <div className="SIMPort">
+    <img src={images} alt="port0"/>
       <div className="provider-container">
         <form method="POST" className="provider-form" onSubmit={onsubmit}>
           <h3>Port Your Sim</h3>
@@ -108,6 +114,7 @@ export default function PortNetwork(props) {
           <input
             type="text"
             value={customer}
+            id="customer"
             name="customer"
             onChange={changecustomerhandle}
             className="form-input"
@@ -120,6 +127,7 @@ export default function PortNetwork(props) {
           <input
             type="text"
             value={phoneNumber}
+            id="phone-number"
             name="phone-number"
             onChange={changephonenumberhandle}
             className="form-input"
@@ -133,6 +141,7 @@ export default function PortNetwork(props) {
             <input
               type="radio"
               name="provider"
+              id="airtel"
               value="AIRTEL"
               onChange={changeproviderhandle}
             />
@@ -173,6 +182,7 @@ export default function PortNetwork(props) {
             Submit
           </button>
         </form>
+      </div>
       </div>
     </>
   );

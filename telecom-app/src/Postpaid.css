@@ -1,15 +1,26 @@
 
 .postpaid-container {
   padding: 20px;
-  border: 1px solid grey;
+  border: 1px solid rgb(12, 9, 186);
   border-radius: 10px;
-  width: 600px;
+  width: 500px;
   margin: 0 auto;
+  
 }
 
-.login-form {
+img{
+  padding: 5%;
+  display: flex;
+  width: 60%;
+  height: 60%;
+}
+
+.SIMPro{
+  display : flex;
+}
+.postpaid-form {
   max-width: 600px;
-  background-color: #4783c6;
+  background-color: #a3c9f2;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;

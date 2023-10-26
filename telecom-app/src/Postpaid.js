@@ -3,7 +3,9 @@ import "./Postpaid.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 export default function Postpaid() {
+  const images = ["/images/s2.png",];
   const [phoneNumber, setPhoneNumber] = useState("");
   const [location, setLocation] = useState("");
   const [customer, setCustomer] = useState("");
@@ -64,8 +66,11 @@ export default function Postpaid() {
     }
   };
   return (
-    <div className="reservation-container">
-      <form method="POST" className="reservation-form" onSubmit={onsubmit}>
+    <>
+    <div className="SIMPro">
+    <img src={images} alt="s2"/>
+    <div className="postpaid-container">
+      <form method="POST" className="postpaid-form" onSubmit={onsubmit}>
         <h2>{`Postpaid`}</h2>
         <label htmlFor="customer" className="form-label">
           Customer Name
@@ -141,6 +146,7 @@ export default function Postpaid() {
         </button>
       </form>
     </div>
+    </div>
+    </>
   );
 }
-

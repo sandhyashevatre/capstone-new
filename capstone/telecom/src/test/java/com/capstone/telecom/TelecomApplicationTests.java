@@ -190,7 +190,7 @@ class TelecomApplicationTests {
 
     @Test
     public void testSetSIMInPhoneWithIMEI_Success() {
-        // Arrange
+        
         String imeiNumber = "123456789012345";
         String phoneNumber = "9876543210";
         Customer customer = new Customer();
@@ -199,24 +199,24 @@ class TelecomApplicationTests {
         List<Customer> customers = new ArrayList<>();
         customers.add(customer);
 
-        // Act
+        
         Boolean result = winmController.setSIMInPhoneWithIMEI(imeiNumber, phoneNumber);
 
-        // Assert
+    
         assertFalse(result);
     }
 
     @Test
     public void testSetSIMInPhoneWithIMEI_ImeiAlreadyExists() {
-        // Arrange
+    
         String imeiNumber = "123456789012345";
         String phoneNumber = "9876543210";
 
 
-        // Act
+    
         Boolean result = winmController.setSIMInPhoneWithIMEI(imeiNumber, phoneNumber);
 
-        // Assert
+    
         assertFalse(result);
     }
 
