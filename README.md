@@ -156,7 +156,7 @@ Cross-Browser Compatibility: The frontend will be designed to function seamlessl
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
 
-Need to add ER image from database
+![ER view](database.png)
 
 ## **7. API Specification**
 
