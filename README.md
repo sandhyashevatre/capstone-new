@@ -264,6 +264,96 @@ Explore the API documentation using Swagger UI:
 
 [Swagger Documentation](/http://localhost:8080/swagger-ui/index.html#/)
 
+## Table of Contents
+
+- [Description](#description)
+- [Server](#server)
+- [API Documentation](#api-documentation)
+- [Clients](#clients)
+- [Schemas](#schemas)
+
+## Description
+
+Explain the purpose and features of your project. Provide any necessary context.
+
+## Server
+
+- **Server URL**: [http://localhost:8080](http://localhost:8080)
+- **Authorize**: winm-controller
+
+## API Documentation
+
+Explore the API endpoints using Swagger UI. Here are the API endpoints available:
+
+### `winm-controller`
+
+#### User
+
+- **GET** `/api/user`
+- **POST** `/api/user`
+
+#### Reserve
+
+- **POST** `/api/reserve`
+
+#### Reservation
+
+- **POST** `/api/reservation`
+- **GET** `/api/reservations`
+- **GET** `/api/allreservedsims`
+
+#### MSISDN
+
+- **GET** `/api/msisdn`
+- **POST** `/api/msisdn`
+- **GET** `/api/allprepaidsims`
+- **GET** `/api/allpostpaidsims`
+- **GET** `/api/allinactivesims`
+
+#### Insert SIM
+
+- **POST** `/api/insertSim`
+
+#### IMEI
+
+- **GET** `/api/imei`
+- **POST** `/api/imei`
+
+#### ICCID
+
+- **GET** `/api/iccid`
+- **POST** `/api/iccid`
+
+#### Change Provider
+
+- **POST** `/api/changeProvider`
+
+#### Authentication Controller
+
+- **POST** `/api/auth/token`
+
+### Clients
+
+- **GET** `/`
+  - This method is used to get the clients.
+
+### Schemas
+
+Here are the schemas used in your project:
+
+- User
+- ReservationDTO
+- MSISDN
+- InsertSimDTO
+- IMEI
+- ICCID
+- LoginBody
+- TokenDTO
+- Customer
+- Registration
+- Reservation
+- SimDTO
+
 ## Frontend Code with Documentation
 
 ## ER Diagram / Database Model Visualization
