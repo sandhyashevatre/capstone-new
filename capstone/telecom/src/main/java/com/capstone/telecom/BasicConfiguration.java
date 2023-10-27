@@ -61,7 +61,7 @@ public class BasicConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfig))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/register", "/api/auth/token").permitAll()
+                        .requestMatchers("/register", "/api/auth/token","/swagger-ui/**","/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                 .logout(withDefaults())
                 .httpBasic(withDefaults())
