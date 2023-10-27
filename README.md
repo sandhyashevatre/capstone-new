@@ -258,6 +258,12 @@ Do we have user personas or profiles to consider?
 
 ## Backend Code with Documentation
 
+**API Documentation**
+
+Explore the API documentation using Swagger UI:
+
+[Swagger Documentation](/http://localhost:8080/swagger-ui/index.html#/)
+
 ## Frontend Code with Documentation
 
 ## ER Diagram / Database Model Visualization
