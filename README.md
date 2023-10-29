@@ -283,76 +283,113 @@ Explain the purpose and features of your project. Provide any necessary context.
 
 ## API Documentation
 
-Explore the API endpoints using Swagger UI. Here are the API endpoints available:
+# Telecom API Documentation
 
-### `winm-controller`
+This document provides an overview of the Telecom API, including endpoints, request/response formats, and sample usage.
 
-#### User
+## API Overview
 
-- **GET** `/api/user`
-- **POST** `/api/user`
+The Telecom API allows you to manage customer reservations, SIM cards, and related entities.
 
-#### Reserve
+## Base URL
 
-- **POST** `/api/reserve`
+The base URL for all API endpoints is `http://localhost:8080`. Make sure to replace it with the actual server URL in a production environment.
 
-#### Reservation
+## Endpoints
 
-- **POST** `/api/reservation`
-- **GET** `/api/reservations`
-- **GET** `/api/allreservedsims`
+### Retrieve All Users
 
-#### MSISDN
+- **URL:** `/api/user`
+- **HTTP Method:** `GET`
+- **Description:** Get a list of all users.
+- **Response:**
+  - `200 OK`: An array of users.
+  
+### Create User
 
-- **GET** `/api/msisdn`
-- **POST** `/api/msisdn`
-- **GET** `/api/allprepaidsims`
-- **GET** `/api/allpostpaidsims`
-- **GET** `/api/allinactivesims`
+- **URL:** `/api/user`
+- **HTTP Method:** `POST`
+- **Description:** Create a new user.
+- **Request Body:**
+  - JSON object representing a user.
+- **Response:**
+  - `200 OK`: The created user.
 
-#### Insert SIM
+### Reserve a Number
 
-- **POST** `/api/insertSim`
+- **URL:** `/api/reserve`
+- **HTTP Method:** `POST`
+- **Description:** Reserve a phone number.
+- **Request Body:**
+  - JSON object representing a reservation request.
+- **Response:**
+  - `200 OK`: A boolean indicating success or failure.
 
-#### IMEI
+### Retrieve All Reservations
 
-- **GET** `/api/imei`
-- **POST** `/api/imei`
+- **URL:** `/api/reservations`
+- **HTTP Method:** `GET`
+- **Description:** Get all reservations for a given customer.
+- **Query Parameter:**
+  - `customerName`: The name of the customer.
+- **Response:**
+  - `200 OK`: An array of reservations.
 
-#### ICCID
+### Retrieve All Reserved SIMs
 
-- **GET** `/api/iccid`
-- **POST** `/api/iccid`
+- **URL:** `/api/allreservedsims`
+- **HTTP Method:** `GET`
+- **Description:** Get all reserved SIM cards.
+- **Response:**
+  - `200 OK`: An array of reserved SIM cards.
 
-#### Change Provider
+### Retrieve All Prepaid SIMs
 
-- **POST** `/api/changeProvider`
+- **URL:** `/api/allprepaidsims`
+- **HTTP Method:** `GET`
+- **Description:** Get all prepaid SIM cards.
+- **Response:**
+  - `200 OK`: An array of prepaid SIM cards.
 
-#### Authentication Controller
+### Retrieve All Postpaid SIMs
 
-- **POST** `/api/auth/token`
+- **URL:** `/api/allpostpaidsims`
+- **HTTP Method:** `GET`
+- **Description:** Get all postpaid SIM cards.
+- **Response:**
+  - `200 OK`: An array of postpaid SIM cards.
 
-### Clients
+### Retrieve All Inactive SIMs
 
-- **GET** `/`
-  - This method is used to get the clients.
+- **URL:** `/api/allinactivesims`
+- **HTTP Method:** `GET`
+- **Description:** Get all inactive SIM cards.
+- **Response:**
+  - `200 OK`: An array of inactive SIM cards.
 
-### Schemas
+### Additional Endpoints
 
-Here are the schemas used in your project:
+- You can find more endpoints in the API documentation for managing MSISDN, ICCID, and IMEI entities.
 
-- User
-- ReservationDTO
-- MSISDN
-- InsertSimDTO
-- IMEI
-- ICCID
-- LoginBody
-- TokenDTO
-- Customer
-- Registration
-- Reservation
-- SimDTO
+## Security
+
+- The API uses JWT (JSON Web Token) for authentication. Make sure to include a valid token in the request headers.
+
+## Sample Request and Response
+
+Here's a sample request and response for creating a user:
+
+**Request:**
+```http
+POST /api/user
+Content-Type: application/json
+
+{
+  "username": "sampleUser",
+  "password": "samplePassword",
+  "role": "user"
+}
+
 
 ## Frontend Code with Documentation
 
