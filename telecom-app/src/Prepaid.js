@@ -4,9 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Prepaid() {
-  const images = [
-    "/images/s2.png",
-  ];
+  const images = ["/images/s2.png"];
   const [phoneNumber, setPhoneNumber] = useState("");
   const [location, setLocation] = useState("");
   const [customer, setCustomer] = useState("");
@@ -67,85 +65,84 @@ export default function Prepaid() {
   };
   return (
     <div className="SIMPro">
-    <img src={images} alt="s2"/>
-    <div className="prepaid-container">
-      <form method="POST" className="reservation-form" onSubmit={onsubmit}>
-        <h2>{`Prepaid`}</h2>
-        <label htmlFor="customer" className="form-label">
-          Customer Name
-        </label>
-        <input
-          type="text"
-          value={customer}
-          name="customer"
-          onChange={changecustomerhandle}
-          className="form-input"
-        />
-        <label htmlFor="phone-number" className="form-label">
-          Mobile Number
-        </label>
-        <input
-          type="text"
-          value={phoneNumber}
-          name="phone-number"
-          onChange={changephonenumberhandle}
-          className="form-input"
-        />
-        <label htmlFor="provider" className="form-label radio-label">
-          Select SIM  
-        </label>
-        <label className="radio-label">
-          <input
-            type="radio"
-            name="provider"
-            value="AIRTEL"
-            onChange={changeproviderhandle}
-          />
-          Airtel
-        </label>
-        <label className="radio-label">
-          <input
-            type="radio"
-            name="provider"
-            value="JIO"
-            onChange={changeproviderhandle}
-          />
-          Jio
-        </label>
-        <label className="radio-label">
-          <input
-            type="radio"
-            name="provider"
-            value="VI"
-            onChange={changeproviderhandle}
-          />
-          Vodafone Idea
-        </label>
-        <label className="radio-label">
-          <input
-            type="radio"
-            name="provider"
-            value="AIRCEL"
-            onChange={changeproviderhandle}
-          />
-          Aircel
-        </label>
-        <label htmlFor="location" className="form-label">
-          Address
+      <img src={images} alt="s2" />
+      <div className="prepaid-container">
+        <form method="POST" className="reservation-form" onSubmit={onsubmit}>
+          <h2>{`Prepaid`}</h2>
+          <label htmlFor="customer" className="form-label">
+            Customer Name
+          </label>
           <input
             type="text"
-            value={location}
-            name="location"
-            onChange={changelocationhandle}
+            value={customer}
+            name="customer"
+            onChange={changecustomerhandle}
             className="form-input"
           />
-        </label>
-        <button type="submit" className="button">
-          Submit
-        </button>
-      </form>
+          <label htmlFor="phone-number" className="form-label">
+            Mobile Number
+          </label>
+          <input
+            type="text"
+            value={phoneNumber}
+            name="phone-number"
+            onChange={changephonenumberhandle}
+            className="form-input"
+          />
+          <label htmlFor="provider" className="form-label radio-label">
+            Select SIM
+          </label>
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="provider"
+              value="AIRTEL"
+              onChange={changeproviderhandle}
+            />
+            Airtel
+          </label>
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="provider"
+              value="JIO"
+              onChange={changeproviderhandle}
+            />
+            Jio
+          </label>
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="provider"
+              value="VI"
+              onChange={changeproviderhandle}
+            />
+            Vodafone Idea
+          </label>
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="provider"
+              value="AIRCEL"
+              onChange={changeproviderhandle}
+            />
+            Aircel
+          </label>
+          <label htmlFor="location" className="form-label">
+            Address
+            <input
+              type="text"
+              value={location}
+              name="location"
+              onChange={changelocationhandle}
+              className="form-input"
+            />
+          </label>
+          <button type="submit" className="button">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
-    </div>
-      );
+  );
 }
-

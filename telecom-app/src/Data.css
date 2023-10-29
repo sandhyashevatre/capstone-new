@@ -1,6 +1,4 @@
-/* Data.css */
 
-/* Style for the entire table container */
 .Data-table {
     max-width: 800px;
     margin: 0 auto;
@@ -11,7 +9,7 @@
     background-color: #fff;
   }
   
-  /* Style for the table and its elements */
+  
   table {
     width: 100%;
     border-collapse: collapse;
@@ -24,18 +22,18 @@
     border-bottom: 1px solid #ccc;
   }
   
-  /* Style for table header (th) */
+
   th {
     background-color: #1e0f8a;
     color: #fff;
   }
   
-  /* Style for alternating rows */
+ 
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
   
-  /* Style for the "Active" and "Inactive" buttons */
+
   button.active {
     background-color: #3db84b;
     color: #fff;

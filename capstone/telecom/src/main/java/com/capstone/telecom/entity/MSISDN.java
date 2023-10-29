@@ -13,8 +13,6 @@ import lombok.Data;
 @Data
 public class MSISDN {
 
-    
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +21,7 @@ public class MSISDN {
     private String msisdnNumber;
 
     public MSISDN(String phoneNumber) {
-        this.msisdnNumber=phoneNumber;
+        this.msisdnNumber = phoneNumber;
     }
 
     public MSISDN() {

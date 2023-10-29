@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import "./ReservRecord.css"; // Import the CSS file
+import "./ReservRecord.css"; 
 
 export default function ReserRecords() {
   const [sims, setSims] = useState([]);
@@ -8,17 +8,18 @@ export default function ReserRecords() {
   const formatDateTime = (isoDateTime) => {
     const date = new Date(isoDateTime);
 
-    return date.toLocaleString(); 
+    return date.toLocaleString();
   };
 
   const fetchSims = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/allreservedsims`,{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+        `http://localhost:8080/api/allreservedsims`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -66,9 +67,7 @@ export default function ReserRecords() {
 
               <td>{sim.msisdn}</td>
 
-              <td>
-                {sim.customerName}
-              </td>
+              <td>{sim.customerName}</td>
 
               <td>{sim.reservationDateTime}</td>
             </tr>

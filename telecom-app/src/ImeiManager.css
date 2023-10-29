@@ -1,91 +1,69 @@
 .imei-container {
+  display: flex;
 
-    display: flex;
-  
-    justify-content: flex-start; /* This aligns the form to the right */
-  
-    align-items: center;
-  
-    padding: 10%;
-  
-    background-color: #f5f5f5; /* Light gray background color */
-  
-  }
-  
-   
-  
-    .imei-form {
-  
-      display: block;
-  
-      background-color: #ffffff; /* White background for the form */
-  
-      padding: 20px;
-  
-      border-radius: 8px;
-  
-      width: 600px;
-  
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-    }
-  
-   
-  
-    .form-label {
-  
-      font-weight: bold;
-  
-      display: block;
-  
-      margin-bottom: 8px;
-  
-      color: #333; /* Dark gray for labels */
-  
-    }
-  
-   
-  
-    .form-input {
-  
-      width: 100%;
-  
-      padding: 8px;
-  
-      margin-bottom: 16px;
-  
-      border: 1px solid #ccc;
-  
-      border-radius: 4px;
-  
-      font-size: 16px;
-  
-    }
-  
-   
-  
-    .button {
-  
-      background-color: #007bff; /* Blue primary color for buttons */
-  
-      color: #fff;
-  
-      border: none;
-  
-      padding: 10px 20px;
-  
-      border-radius: 4px;
-  
-      cursor: pointer;
-  
-      font-size: 16px;
-  
-    }
-  
-   
-  
-    .button:hover {
-  
-      background-color: #0056b3; /* Darker blue on hover */
-  
-    }
+  justify-content: flex-start;
+
+  align-items: center;
+
+  padding: 10%;
+
+  background-color: #f5f5f5; 
+}
+
+.imei-form {
+  display: block;
+
+  background-color: #ffffff;
+
+  padding: 20px;
+
+  border-radius: 8px;
+
+  width: 600px;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+
+  padding: 8px;
+
+  margin-bottom: 16px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 4px;
+
+  font-size: 16px;
+}
+
+.button {
+  background-color: #007bff; 
+
+  color: #fff;
+
+  border: none;
+
+  padding: 10px 20px;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #0056b3; 
+}

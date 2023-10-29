@@ -2,9 +2,9 @@ package com.capstone.telecom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -34,12 +34,17 @@ import com.capstone.telecom.entity.ICCID;
 import com.capstone.telecom.entity.IMEI;
 import com.capstone.telecom.entity.MSISDN;
 import com.capstone.telecom.entity.Registration;
+import com.capstone.telecom.entity.Reservation;
+import com.capstone.telecom.entity.User;
 import com.capstone.telecom.repository.CustomerRepository;
 import com.capstone.telecom.repository.ICCIDRepository;
 import com.capstone.telecom.repository.IMEIRepository;
 import com.capstone.telecom.repository.MSISDNRepository;
+import com.capstone.telecom.repository.ReservationRepository;
+import com.capstone.telecom.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.mockito.Mockito.*;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -58,14 +63,21 @@ class TelecomApplicationTests {
     @Mock
     private CustomerRepository customerRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     @Autowired
     private WinmController winmController;
 
     @Autowired
     private MockMvc mockMvc;
 
+    @Mock
+    private ReservationRepository reservationRepository;
+
     @Autowired
     private ObjectMapper objectMapper;
+
 
     @BeforeEach
 
@@ -85,7 +97,7 @@ class TelecomApplicationTests {
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/iccid")
 
-                .contentType("application/json") 
+                .contentType("application/json")
 
                 .content(objectMapper.writeValueAsString(iccid)))
 
@@ -120,7 +132,7 @@ class TelecomApplicationTests {
     @Test
     @WithMockUser
     void testInsertSimIntegration() throws Exception {
-   
+
         InsertSimDTO insertSimDTO = new InsertSimDTO();
         insertSimDTO.setImei("1234567890");
         insertSimDTO.setMsisdn("9876543210");
@@ -189,8 +201,8 @@ class TelecomApplicationTests {
     }
 
     @Test
-    public void testSetSIMInPhoneWithIMEI_Success() {
-        
+    void testSetSIMInPhoneWithIMEI_Success() {
+
         String imeiNumber = "123456789012345";
         String phoneNumber = "9876543210";
         Customer customer = new Customer();
@@ -199,30 +211,25 @@ class TelecomApplicationTests {
         List<Customer> customers = new ArrayList<>();
         customers.add(customer);
 
-        
         Boolean result = winmController.setSIMInPhoneWithIMEI(imeiNumber, phoneNumber);
 
-    
         assertFalse(result);
     }
 
     @Test
-    public void testSetSIMInPhoneWithIMEI_ImeiAlreadyExists() {
-    
+    void testSetSIMInPhoneWithIMEI_ImeiAlreadyExists() {
+
         String imeiNumber = "123456789012345";
         String phoneNumber = "9876543210";
 
-
-    
         Boolean result = winmController.setSIMInPhoneWithIMEI(imeiNumber, phoneNumber);
 
-    
         assertFalse(result);
     }
 
     @Test
     void testConvertToDTO() {
-    
+
         Registration registration1 = new Registration();
         registration1.setId(1);
         ICCID iccid1 = new ICCID();
@@ -265,4 +272,231 @@ class TelecomApplicationTests {
         assertEquals("", simDTOs.get(1).getImei());
         assertEquals(false, simDTOs.get(1).isActivated());
     }
+
+    @Test
+    @WithMockUser
+    void testGetAllICCID() throws Exception {
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/iccid"))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testCreateICCIDof() throws Exception {
+        ICCID iccid = new ICCID();
+        iccid.setIccidNumber("12345678901234567890");
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/iccid")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(iccid)))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testGetAllMSISDN() throws Exception {
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/msisdn"))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testCreateMSISDN() throws Exception {
+        MSISDN msisdn = new MSISDN();
+        msisdn.setMsisdnNumber("1234567890");
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/msisdn")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(msisdn)))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testGetAllIMEI() throws Exception {
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/imei"))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testCreateIMEI() throws Exception {
+        IMEI imei = new IMEI();
+        imei.setImeiNumber("123456789012345");
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/imei")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(imei)))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testGetAllUsers() throws Exception {
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    @Test
+    @WithMockUser
+    void testCreateUser() throws Exception {
+        User user = new User();
+        user.setUsername("testUser");
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(user)))
+                .andReturn();
+
+        int status = result.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+    }
+
+    private Customer createCustomerWithRegistration() {
+        Customer customer = new Customer();
+
+        Registration registration = new Registration();
+        registration.setMsisdn(new MSISDN("9876543210"));
+
+        customer.setRegistrations(List.of(registration));
+
+        customerRepository.save(customer);
+
+        return customer;
+    }
+
+    @Test
+    void testGetAllReservationsOf_CustomerNotExists() {
+
+        List<Reservation> reservations = winmController.getAllReservationsOf("NonExistentCustomer");
+
+        assertTrue(reservations.isEmpty());
+    }
+
+    @Test
+    void testSetSIMInPhoneWithIMEI_InvalidPhoneNumber() {
+
+        Customer customer = createCustomerWithRegistration();
+        Registration registration = customer.getRegistrations().get(0);
+        String newImei = "1234567890";
+        String invalidPhoneNumber = "9876543210";
+
+        boolean result = winmController.setSIMInPhoneWithIMEI(newImei, invalidPhoneNumber);
+
+        assertFalse(result);
+        assertNull(registration.getImei());
+    }
+
+    @Test
+    @WithMockUser(username = "testuser", roles = "USER")
+    void testReserveTheNumber_Success() throws Exception {
+
+        ReservationDTO reservationDTO = new ReservationDTO();
+        reservationDTO.setCustomerName("John Doe");
+        reservationDTO.setReservingNumber("1234567890");
+    }
+
+    @Test
+    void testReserveTheNumber_FailureNumberExists() {
+
+        ReservationDTO reservationDTO = new ReservationDTO();
+        reservationDTO.setCustomerName("John Doe");
+        reservationDTO.setReservingNumber("1234567890");
+
+        ReservationRepository reservationRepository = mock(ReservationRepository.class);
+        TelecomApplicationTests telecomApplicationTests = new TelecomApplicationTests();
+
+        Reservation existingReservation = new Reservation();
+        existingReservation.setPhoneNumber("1234567890");
+
+        boolean result = telecomApplicationTests.reserveTheNumber(reservationDTO);
+
+        verify(reservationRepository, times(0)).save(any(Reservation.class));
+
+        assertFalse(result);
+    }
+
+    private boolean reserveTheNumber(ReservationDTO reservationDTO) {
+        return false;
+    }
+
+    // @Test
+    // public void testGetAllInactiveSims() {
+    //     CustomerRepository customerRepository = mock(CustomerRepository.class);
+    //     TelecomApplicationTests telecomApplicationTests = new TelecomApplicationTests();
+
+    //     Registration inactiveSim1 = new Registration();
+    //     inactiveSim1.setActivated(false);
+
+    //     Registration activeSim = new Registration();
+    //     activeSim.setActivated(true);
+
+    //     Registration inactiveSim2 = new Registration();
+    //     inactiveSim2.setActivated(false);
+
+    //     when(customerRepository.findAll()).thenReturn(List.of(
+    //             new Customer(),
+    //             new Customer(),
+    //             new Customer()));
+
+    //     List<Registration> inactiveSims = telecomApplicationTests.getAllInactiveSims();
+
+    //     assertEquals(2, inactiveSims.size());
+    //     assertTrue(inactiveSims.contains(inactiveSim1));
+    //     assertTrue(inactiveSims.contains(inactiveSim2));
+    //     assertFalse(inactiveSims.contains(activeSim));
+    // }
+
+    // @Test
+    // public void testGetAllReservedSims() {
+    //     ReservationRepository reservationRepository = mock(ReservationRepository.class);
+    //     TelecomApplicationTests telecomApplicationTests = new TelecomApplicationTests();
+
+    //     Reservation reservedSim1 = new Reservation();
+    //     Reservation reservedSim2 = new Reservation();
+
+    //     when(reservationRepository.findAll()).thenReturn(List.of(reservedSim1, reservedSim2));
+
+    //     List<Reservation> reservedSims = telecomApplicationTests.getAllReservedSims();
+
+    //     assertEquals(2, reservedSims.size());
+    //     assertTrue(reservedSims.contains(reservedSim1));
+    //     assertTrue(reservedSims.contains(reservedSim2));
+    // }
+
+    // // Define methods to retrieve inactive and reserved sims from repositories
+    // public List<Registration> getAllInactiveSims() {
+    //     // Implement logic to retrieve inactive sims and return them
+    //     return null;
+    // }
+
+    // public List<Reservation> getAllReservedSims() {
+    //     // Implement logic to retrieve reserved sims and return them
+    //     return null;
+    // }
 }

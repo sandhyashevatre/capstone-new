@@ -11,5 +11,5 @@ public interface ICCIDRepository extends JpaRepository<ICCID, Long> {
     ICCID findByIccidNumber(String string);
 
     Optional<ICCID> findByNetworkProvider(String anyString);
-   
+
 }

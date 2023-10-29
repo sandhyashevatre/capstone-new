@@ -57,7 +57,7 @@ test('navigates to the Home page when the Home link is clicked', () => {
   render(<App />);
   const homeLink = screen.getByText("Home");
   fireEvent.click(homeLink);
-  const homePageHeader = screen.getByText("Home Page"); // Replace with actual content on your Home page
+  const homePageHeader = screen.getByText("Home Page");
   expect(homePageHeader).toBeInTheDocument();
 });
 

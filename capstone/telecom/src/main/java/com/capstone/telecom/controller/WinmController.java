@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,7 +27,6 @@ import com.capstone.telecom.repository.IMEIRepository;
 import com.capstone.telecom.repository.MSISDNRepository;
 import com.capstone.telecom.repository.ReservationRepository;
 import com.capstone.telecom.repository.UserRepository;
-
 import jakarta.transaction.Transactional;
 
 @RestController
@@ -152,7 +150,6 @@ public class WinmController {
             customer.setRegistrations(new ArrayList<>());
 
         }
-
         newSim.setConnectionType(reservationDTO.getConnectionType());
 
         customer.getRegistrations().add(newSim);
@@ -279,7 +276,7 @@ public class WinmController {
         return true;
     }
 
-    private List<Reservation> getAllReservationsOf(String customerName) {
+    public List<Reservation> getAllReservationsOf(String customerName) {
 
         Customer customer = customerRepository.findByName(customerName).orElse(null);
 
@@ -427,7 +424,6 @@ public class WinmController {
 
         Reservation newReservation = new Reservation();
 
-
         newReservation.setCustomer(customer);
 
         newReservation.setPhoneNumber(reservationDTO.getReservingNumber());
@@ -440,7 +436,6 @@ public class WinmController {
 
     }
 
-    // newmethods
     @GetMapping("/allinactivesims")
     public ResponseEntity<List<SimDTO>> getAllInactiveSimsOf() {
         List<Registration> sims = getAllInactiveSims();

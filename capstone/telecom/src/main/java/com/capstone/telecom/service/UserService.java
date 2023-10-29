@@ -34,7 +34,6 @@ public class UserService {
 
     public User create(User user) {
         user.setPassword("{bcrypt}" + passwordEncoder.encode(user.getPassword()));
-
         return userRepository.save(user);
     }
 
@@ -44,6 +43,7 @@ public class UserService {
 
     public Optional<User> getByName(String name) {
         return userRepository.findByUsername(name);
+
     }
 
 }

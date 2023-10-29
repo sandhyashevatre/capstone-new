@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Account.css'; // Import the CSS file
+import './Account.css'; 
 
 export default function Account() {
     const [username, setUsername] = useState("");
@@ -45,7 +45,7 @@ export default function Account() {
     };
   
     return (
-      <div className="account-container"> {/* Apply the CSS class to the container */}
+      <div className="account-container">
         <form className="login-form" method="POST" onSubmit={onsubmit}>
           <label htmlFor="username">Username</label>
           <input type="text" value={username} name="username" onChange={handleUserChange} />

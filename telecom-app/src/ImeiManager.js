@@ -1,6 +1,6 @@
 import { useState } from "react";
-import React from 'react';
-import "./ImeiManager.css"
+import React from "react";
+import "./ImeiManager.css";
 import { toast } from "react-toastify";
 
 export default function ImeiManager() {
@@ -20,23 +20,20 @@ export default function ImeiManager() {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/api/insertSim",
-        {
-          method: "POST",
+      const response = await fetch("http://localhost:8080/api/insertSim", {
+        method: "POST",
 
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify({
-            imei: ImeiNumber,
+        body: JSON.stringify({
+          imei: ImeiNumber,
 
-            msisdn: PhoneNumber,
-          }),
-        }
-      );
+          msisdn: PhoneNumber,
+        }),
+      });
 
       if (response.ok) {
         const b = await response.json();
@@ -55,7 +52,6 @@ export default function ImeiManager() {
           });
         }
 
-
         setTimeout(() => {
           window.location.reload();
         }, 5000);
@@ -71,7 +67,7 @@ export default function ImeiManager() {
     <>
       <div className="imei-container">
         <form method="POST" className="imei-form" onSubmit={onsubmit}>
-        <h1>Provide IMEI number</h1>
+          <h1>Provide IMEI number</h1>
           <label htmlFor="IMEINumber" className="form-label">
             Enter IMEI Number
           </label>

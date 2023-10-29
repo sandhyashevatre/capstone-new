@@ -1,81 +1,38 @@
-/* About.css */
-
-/* About section container */
-.About {
-  background-color: #91a1e8;
-  padding: 20px;
+.about-container {
+  background-color: #b8e0f7;
+  padding: 30px;
+  text-align: center;
 }
 
-/* Introduction text styles */
-.Introduction {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-.Introduction h1 {
-  font-size: 32px;
-  margin: 0 0 20px;
-  color: #333;
-}
-
-.Introduction h2 {
-  font-size: 24px;
-  margin: 20px 0 10px;
-  color: #555;
-}
-
-.Introduction p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #666;
-}
-
-/* Container for mission and services */
-.MissionServices {
-  margin-top: 20px;
-  padding: 20px 0;
-  border-top: 1px solid #e0e0e0;
-}
-
-/* List items for mission and services */
-.MissionServices h2 {
-  font-size: 24px;
-  margin: 10px 0;
-  color: #555;
-}
-
-.MissionServices ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
-.MissionServices li {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #666;
-}
-
-/* Call to action section */
-.Join5G {
-  margin-top: 20px;
-  padding: 20px 0;
-  border-top: 1px solid #e0e0e0;
-}
-
-.Join5G h2 {
+.about-title {
   font-size: 28px;
-  margin: 0 0 20px;
   color: #333;
+  margin-bottom: 20px;
 }
 
-.Join5G p {
+.about-description {
   font-size: 18px;
-  line-height: 1.5;
   color: #555;
+  line-height: 1.5;
+  margin-bottom: 30px;
 }
+
+.mission-title,
+.offering-title,
+.revolution-title {
+  font-size: 24px;
+  color: #333;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.mission-description,
+.offering-description,
+.revolution-description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+

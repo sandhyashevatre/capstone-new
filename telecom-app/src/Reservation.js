@@ -1,63 +1,62 @@
 import { useState } from "react";
 import "./Reservation.css";
 import { toast } from "react-toastify";
-import React from 'react';
-
+import React from "react";
 
 export default function Reservation(props) {
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [location, setLocation] = useState("");
-    const [customer, setCustomer] = useState("");
-    const [provider, setProvider] = useState("");
-    const changephonenumberhandle = (event) => {
-      setPhoneNumber(event.target.value);
-    };
-    const changeproviderhandle = (event) => {
-      setProvider(event.target.value);
-    };
-    const changelocationhandle = (event) => {
-      setLocation(event.target.value);
-    };
-    const changecustomerhandle = (event) => {
-      setCustomer(event.target.value);
-    };
-    const onsubmit = async (e) =>{
-        e.preventDefault();
-        try{
-        const response = await fetch('http://localhost:8080/api/reserve',{
-            method : "POST",
-            headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-            body : JSON.stringify({
-                customerName : customer,
-                provider : provider,
-                reservingNumber : phoneNumber,
-                connectionType : props.connection.type,
-            }),
-        });
-        if (response.ok) {
-            const data = await response.json();
-    
-            if (data === true) {
-              toast.success("Sim Reserved successfully", {
-                position: "top-center",
-    
-                autoClose: 5000,
-              });
-            } else {
-              toast.error("Sim Reservation Failed", {
-                position: "top-center",
-    
-                autoClose: 5000,
-              });
-            }
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [location, setLocation] = useState("");
+  const [customer, setCustomer] = useState("");
+  const [provider, setProvider] = useState("");
+  const changephonenumberhandle = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+  const changeproviderhandle = (event) => {
+    setProvider(event.target.value);
+  };
+  const changelocationhandle = (event) => {
+    setLocation(event.target.value);
+  };
+  const changecustomerhandle = (event) => {
+    setCustomer(event.target.value);
+  };
+  const onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/api/reserve", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: customer,
+          provider: provider,
+          reservingNumber: phoneNumber,
+          connectionType: props.connection.type,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data === true) {
+          toast.success("Sim Reserved successfully", {
+            position: "top-center",
+
+            autoClose: 5000,
+          });
+        } else {
+          toast.error("Sim Reservation Failed", {
+            position: "top-center",
+
+            autoClose: 5000,
+          });
         }
-        }catch(e){
-            console.error(e);
-        }
+      }
+    } catch (e) {
+      console.error(e);
     }
+  };
   return (
     <div className="reservation-container">
       <form method="POST" className="reservation-form" onSubmit={onsubmit}>

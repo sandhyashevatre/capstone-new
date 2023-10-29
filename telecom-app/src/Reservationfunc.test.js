@@ -52,7 +52,7 @@ describe('Reservation Functional Tests', () => {
     await airtelRadio.click();
     await submitButton.click();
 
-    // Wait for the success message element to appear
+
     const successMessage = await driver.wait(until.elementLocated(By.className('success-message')));
 
     const successMessageText = await successMessage.getText();

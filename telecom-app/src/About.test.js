@@ -26,5 +26,4 @@ describe('Contact Component (Unit Tests)', () => {
     expect(aboutContent).toBeInTheDocument();
   });
 
-  // Add more specific tests for other content as needed.
 });

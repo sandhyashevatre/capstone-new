@@ -1,65 +1,62 @@
-
 .reservation-container {
-    padding: 20px;
-    border: 1px solid rgb(27, 26, 26);
-    border-radius: 10px;
-    width: 600px;
-    margin: 0 auto;
-  }
-  
-  .reservation-form {
-    max-width: 600px;
-    background-color: #a3c9f2;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-label,
-  .form-input,
-  .radio-label,
-  .radio-label input,
-  .button {
-    font-size: 16px;
-  }
-  
-  .form-label {
-    margin-bottom: 10px;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .radio-label {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    font-weight: bold;
-    
-  }
-  
-  .radio-label input {
-    margin-right: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .button {
-    background-color: #1e0f8a;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #0d0655;
-  }
-  
+  padding: 20px;
+  border: 1px solid rgb(27, 26, 26);
+  border-radius: 10px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.reservation-form {
+  max-width: 600px;
+  background-color: #a3c9f2;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label,
+.form-input,
+.radio-label,
+.radio-label input,
+.button {
+  font-size: 16px;
+}
+
+.form-label {
+  margin-bottom: 10px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.radio-label input {
+  margin-right: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button {
+  background-color: #1e0f8a;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0d0655;
+}

@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Enrich your digital life</h1>
       <div className="imageslider">
           <ImageSlider images={images} glideDuration={5000} />
       </div>

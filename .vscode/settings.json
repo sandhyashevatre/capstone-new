@@ -1,4 +1,19 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "koverage.coverageCommand": "",
+    "koverage.autoRefresh": true,
+    "koverage.autoRefreshDebounce": 3000,
+    "koverage.coverageFileNames": [
+        "lcov.info",
+        "cov.xml",
+        "clover.xml",
+        "coverage.xml",
+        "jacoco.xml"
+    ],
+    "koverage.coverageFilePaths": [
+        "**"
+    ],
+    "koverage.lowCoverageThreshold": 50,
+    "koverage.sufficientCoverageThreshold": 70
 }

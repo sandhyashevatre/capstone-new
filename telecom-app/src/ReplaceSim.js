@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import React from 'react';
+import React from "react";
 
 import "./ReplaceSim.css";
 
@@ -47,34 +47,31 @@ export default function ReplaceSim(props) {
     );
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/api/replacesim",
-        {
-          method: "POST",
+      const response = await fetch("http://localhost:8080/api/replacesim", {
+        method: "POST",
 
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
-          },
+        },
 
-          body: JSON.stringify({
-            customerName: customer,
+        body: JSON.stringify({
+          customerName: customer,
 
-            reservingNumber: phoneNumber,
+          reservingNumber: phoneNumber,
 
-            provider: provider,
+          provider: provider,
 
-            location: location,
+          location: location,
 
-            connectionType: props.connection.type,
-          }),
-        }
-      );
+          connectionType: props.connection.type,
+        }),
+      });
 
       if (response.ok) {
         toast.success("Sim has been registered successfully", {
           position: "top-center",
-          autoClose: 5000, 
+          autoClose: 5000,
         });
 
         setTimeout(() => {

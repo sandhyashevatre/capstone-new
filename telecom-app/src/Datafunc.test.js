@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom'; // If your component uses Router
+import { BrowserRouter } from 'react-router-dom'; 
 
 import Data from './Data';
 

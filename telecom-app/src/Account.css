@@ -1,6 +1,6 @@
-/* Account.css */
+
 .account-container {
-    background-color:  #1e0f8a; /* Blue color */
+    background-color:  #1e0f8a;
     padding: 10px;
     border-radius: 5px;
     width: 300px;
@@ -28,7 +28,7 @@
   }
   
   .login-form button {
-    background-color: #1e0f8a; /* Slightly darker blue for the button */
+    background-color: #1e0f8a; 
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -41,6 +41,6 @@
   }
   
   .login-form button:hover {
-    background-color: #1538e7; /* Darker blue on hover */
+    background-color: #1538e7; 
   }
   

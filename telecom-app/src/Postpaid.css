@@ -1,22 +1,20 @@
-
 .postpaid-container {
   padding: 20px;
   border: 1px solid rgb(12, 9, 186);
   border-radius: 10px;
   width: 500px;
   margin: 0 auto;
-  
 }
 
-img{
+img {
   padding: 5%;
   display: flex;
   width: 60%;
   height: 60%;
 }
 
-.SIMPro{
-  display : flex;
+.SIMPro {
+  display: flex;
 }
 .postpaid-form {
   max-width: 600px;

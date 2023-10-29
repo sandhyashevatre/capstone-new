@@ -9,5 +9,5 @@ import com.capstone.telecom.entity.IMEI;
 public interface IMEIRepository extends JpaRepository<IMEI, Long> {
 
     Optional<IMEI> findByImeiNumber(String string);
-   
+
 }

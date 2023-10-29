@@ -67,4 +67,3 @@ public class RepositoryTests {
         assertNotNull(savedUser);
     }
 }
-

@@ -21,42 +21,42 @@ import com.capstone.telecom.dto.TokenDTO;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = {"http://localhost:3000","http://172.17.231.120:3000"})
+@CrossOrigin(origins = { "http://localhost:3000", "http://172.17.231.120:3000" })
 public class APIAuthController {
 
-    @Autowired
-    private JwtEncoder jwtEncoder;
+  @Autowired
+  private JwtEncoder jwtEncoder;
 
-    @Autowired
-    AuthenticationManager authenticationManager;
-    
-    
-    @PostMapping("/token")
-    public TokenDTO token(@RequestBody LoginBody loginBody) {
-        Instant now = Instant.now();
-        long expiry = 3600L;
-        var username = loginBody.getUsername();
-        var password = loginBody.getPassword();
-//        var password = ("{bcrypt}" + passwordEncoder.encode(loginBody.getPassword()));
-        System.out.println(loginBody.getUsername() + loginBody.getPassword());
-        org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        String scope = authentication.getAuthorities().stream()
-				.map(GrantedAuthority::getAuthority)
-				.collect(Collectors.joining(" "));
+  @Autowired
+  AuthenticationManager authenticationManager;
 
-        JwtClaimsSet claims = JwtClaimsSet.builder()
-				.issuer("self")
-				.issuedAt(now)
-				.expiresAt(now.plusSeconds(expiry))
-				.subject(authentication.getName())
-				.claim("scope", scope)
-				.build();
+  @PostMapping("/token")
+  public TokenDTO token(@RequestBody LoginBody loginBody) {
+    Instant now = Instant.now();
+    long expiry = 3600L;
+    var username = loginBody.getUsername();
+    var password = loginBody.getPassword();
 
-        TokenDTO token = new TokenDTO();
+    System.out.println(loginBody.getUsername() + loginBody.getPassword());
+    org.springframework.security.core.Authentication authentication = authenticationManager
+        .authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String scope = authentication.getAuthorities().stream()
+        .map(GrantedAuthority::getAuthority)
+        .collect(Collectors.joining(" "));
 
-        token.setToken(this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue());
+    JwtClaimsSet claims = JwtClaimsSet.builder()
+        .issuer("self")
+        .issuedAt(now)
+        .expiresAt(now.plusSeconds(expiry))
+        .subject(authentication.getName())
+        .claim("scope", scope)
+        .build();
 
-        return token;
-    }
+    TokenDTO token = new TokenDTO();
+
+    token.setToken(this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue());
+
+    return token;
+  }
 
 }

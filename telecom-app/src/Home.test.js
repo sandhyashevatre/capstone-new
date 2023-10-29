@@ -13,7 +13,7 @@ describe('Home Component (Unit Tests)', () => {
   it('renders the ImageSlider component', () => {
     render(<Home />);
 
-    const imageSlider = screen.getByTestId('image-slider'); // You can set a data-testid in your component
+    const imageSlider = screen.getByTestId('image-slider'); 
     expect(imageSlider).toBeInTheDocument();
   });
 
@@ -25,5 +25,4 @@ describe('Home Component (Unit Tests)', () => {
     expect(images.length).toBeGreaterThan(0);
   });
 
-  // You can add more specific tests based on your component's structure and content.
 });

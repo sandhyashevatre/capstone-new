@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "./PortNetwork.css";
-import React from 'react';
-
+import React from "react";
 
 export default function PortNetwork(props) {
-
-  const images = [
-    "/images/port0.png",
-  ];
+  const images = ["/images/port0.png"];
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const [customer, setCustomer] = useState("");
@@ -45,29 +41,26 @@ export default function PortNetwork(props) {
     );
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/api/changeProvider",
-        {
-          method: "POST",
+      const response = await fetch("http://localhost:8080/api/changeProvider", {
+        method: "POST",
 
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify({
-            customerName: customer,
+        body: JSON.stringify({
+          customerName: customer,
 
-            reservingNumber: phoneNumber,
+          reservingNumber: phoneNumber,
 
-            provider: provider,
+          provider: provider,
 
-            location: "",
+          location: "",
 
-            connectionType: props.connection.type,
-          }),
-        }
-      );
+          connectionType: props.connection.type,
+        }),
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -99,90 +92,90 @@ export default function PortNetwork(props) {
 
   return (
     <>
-    <div className="SIMPort">
-    <img src={images} alt="port0"/>
-      <div className="provider-container">
-        <form method="POST" className="provider-form" onSubmit={onsubmit}>
-          <h3>Port Your Sim</h3>
+      <div className="SIMPort">
+        <img src={images} alt="port0" />
+        <div className="provider-container">
+          <form method="POST" className="provider-form" onSubmit={onsubmit}>
+            <h3>Port Your Sim</h3>
 
-          <hr />
+            <hr />
 
-          <label htmlFor="customer" className="form-label">
-            Customer Name
-          </label>
+            <label htmlFor="customer" className="form-label">
+              Customer Name
+            </label>
 
-          <input
-            type="text"
-            value={customer}
-            id="customer"
-            name="customer"
-            onChange={changecustomerhandle}
-            className="form-input"
-          />
-
-          <label htmlFor="phone-number" className="form-label">
-            Mobile Number
-          </label>
-
-          <input
-            type="text"
-            value={phoneNumber}
-            id="phone-number"
-            name="phone-number"
-            onChange={changephonenumberhandle}
-            className="form-input"
-          />
-
-          <label htmlFor="provider" className="form-label radio-label">
-            Networks
-          </label>
-
-          <label className="radio-label">
             <input
-              type="radio"
-              name="provider"
-              id="airtel"
-              value="AIRTEL"
-              onChange={changeproviderhandle}
+              type="text"
+              value={customer}
+              id="customer"
+              name="customer"
+              onChange={changecustomerhandle}
+              className="form-input"
             />
-            Airtel
-          </label>
 
-          <label className="radio-label">
+            <label htmlFor="phone-number" className="form-label">
+              Mobile Number
+            </label>
+
             <input
-              type="radio"
-              name="provider"
-              value="JIO"
-              onChange={changeproviderhandle}
+              type="text"
+              value={phoneNumber}
+              id="phone-number"
+              name="phone-number"
+              onChange={changephonenumberhandle}
+              className="form-input"
             />
-            Jio
-          </label>
 
-          <label className="radio-label">
-            <input
-              type="radio"
-              name="provider"
-              value="VI"
-              onChange={changeproviderhandle}
-            />
-            Vodafone Idea
-          </label>
+            <label htmlFor="provider" className="form-label radio-label">
+              Networks
+            </label>
 
-          <label className="radio-label">
-            <input
-              type="radio"
-              name="provider"
-              value="AIRCEL"
-              onChange={changeproviderhandle}
-            />
-            Aircel
-          </label>
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="provider"
+                id="airtel"
+                value="AIRTEL"
+                onChange={changeproviderhandle}
+              />
+              Airtel
+            </label>
 
-          <button type="submit" className="button">
-            Submit
-          </button>
-        </form>
-      </div>
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="provider"
+                value="JIO"
+                onChange={changeproviderhandle}
+              />
+              Jio
+            </label>
+
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="provider"
+                value="VI"
+                onChange={changeproviderhandle}
+              />
+              Vodafone Idea
+            </label>
+
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="provider"
+                value="AIRCEL"
+                onChange={changeproviderhandle}
+              />
+              Aircel
+            </label>
+
+            <button type="submit" className="button">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
