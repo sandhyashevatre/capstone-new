@@ -368,6 +368,59 @@ The base URL for all API endpoints is `http://localhost:8080`. Make sure to repl
 
 ## Frontend Code with Documentation
 
+## React Frontend 
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Routing Setup](#routing-setup)
+3. [State Management](#state-management)
+4. [User Authentication](#user-authentication)
+5. [Dropdown Navigation](#dropdown-navigation)
+6. [Navigation Bar](#navigation-bar)
+7. [Routes and Components](#routes-and-components)
+8. [Footer and Social Links](#footer-and-social-links)
+
+## 1. Introduction
+
+The React frontend code is responsible for creating a web application with multiple pages and components. It utilizes React Router for navigation and maintains user authentication state.
+
+## 2. Routing Setup
+
+The application uses the `react-router-dom` library for routing. The `BrowserRouter` wraps the entire app, enabling navigation between different components.
+
+## 3. State Management
+
+State management is achieved using React's `useState` hook. Various states are used to control the visibility of dropdown menus and manage the user login state.
+
+## 4. User Authentication
+
+User authentication is simulated with a "LOGIN" and "LOGOUT" toggle button. The user state is stored in the `userState` state variable and cleared when the user logs out.
+
+## 5. Dropdown Navigation
+
+Dropdown navigation menus are implemented for "Prepaid," "Postpaid," "Reservation," and "Records." Clicking on these menu items toggles the display of corresponding sub-menu items.
+
+## 6. Navigation Bar
+
+The navigation bar is created using an unordered list (`<ul>`) with links to various pages. Icons from the `@fortawesome/react-fontawesome` library are used for improved styling.
+
+## 7. Routes and Components
+
+The `<Routes>` component defines routes for different pages, rendering the corresponding components. Each route specifies the URL path and the component to render.
+
+- `/home`: Home component.
+- `/about`: About component.
+- `/prepaid`, `/postpaid`: Components for new SIM registration.
+- `/account`: Account component.
+- `insert-sim`: IMEI manager component.
+- `/ReservRecord`: Reserved-SIM records component.
+- `/InactiveRecord`: Inactive-SIM records component.
+- `/prepaid-reservation`, `/postpaid-reservation`: Reservation components based on the connection type.
+- `portNetwork-prepaid`, `portNetwork-postpaid`: Porting network components based on the connection type.
+- `prepaid-data`, `postpaid-data`: Data components based on the connection type.
+- `replace-sim-prepaid`, `replace-sim-postpaid`: Replace SIM components based on the connection type.
+
 ## ER Diagram / Database Model Visualization
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
