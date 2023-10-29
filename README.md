@@ -60,7 +60,7 @@ The purpose of this document is to outline the requirements for the development 
 
 **1.2 Scope**
 
-The system is designed to manage ICCID, MSISDN, and IMEI numbers in wireless networks. This encompasses the tracking, reservation, and allocation of these numbers, with the primary aim of benefiting wireless service providers by streamlining their inventory management processes.
+The system is designed to manage ICCID, MSISDN, and IMEI numbers in wireless networks. This encompasses the  reservation, and allocation of these numbers, with the primary aim of benefiting wireless service providers by streamlining their inventory management processes.
 
 **1.3 Definitions**
 
