@@ -261,7 +261,7 @@ Do we have user personas or profiles to consider?
 <<<<<<< HEAD
 ## Frontend Code with Documentation
 
-=======
+
 **API Documentation**
 
 Explore the API documentation using Swagger UI:
@@ -425,7 +425,6 @@ The `<Routes>` component defines routes for different pages, rendering the corre
 - `prepaid-data`, `postpaid-data`: Data components based on the connection type.
 - `replace-sim-prepaid`, `replace-sim-postpaid`: Replace SIM components based on the connection type.
 
->>>>>>> c2d11b25a00f8865d04036750155c59ab3c835f4
 ## ER Diagram / Database Model Visualization
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
