@@ -433,3 +433,5 @@ The data model will consist of key entities for ICCID, MSISDN, and IMEI, securel
 
 ## Test Coverage Report
 
+Backend : 44.7%
+Fontend: All unit test and functional tests are there in code. 
