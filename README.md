@@ -283,8 +283,6 @@ Explain the purpose and features of your project. Provide any necessary context.
 
 ## API Documentation
 
-# Telecom API Documentation
-
 This document provides an overview of the Telecom API, including endpoints, request/response formats, and sample usage.
 
 ## API Overview
@@ -374,21 +372,6 @@ The base URL for all API endpoints is `http://localhost:8080`. Make sure to repl
 ## Security
 
 - The API uses JWT (JSON Web Token) for authentication. Make sure to include a valid token in the request headers.
-
-## Sample Request and Response
-
-Here's a sample request and response for creating a user:
-
-**Request:**
-```http
-POST /api/user
-Content-Type: application/json
-
-{
-  "username": "sampleUser",
-  "password": "samplePassword",
-  "role": "user"
-}
 
 
 ## Frontend Code with Documentation
