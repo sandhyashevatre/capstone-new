@@ -272,10 +272,6 @@ Explore the API documentation using Swagger UI:
 - [Clients](#clients)
 - [Schemas](#schemas)
 
-## Description
-
-Explain the purpose and features of your project. Provide any necessary context.
-
 ## Server
 
 - **Server URL**: [http://localhost:8080](http://localhost:8080)
@@ -364,10 +360,6 @@ The base URL for all API endpoints is `http://localhost:8080`. Make sure to repl
 - **Description:** Get all inactive SIM cards.
 - **Response:**
   - `200 OK`: An array of inactive SIM cards.
-
-### Additional Endpoints
-
-- You can find more endpoints in the API documentation for managing MSISDN, ICCID, and IMEI entities.
 
 ## Security
 
