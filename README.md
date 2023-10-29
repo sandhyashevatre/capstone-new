@@ -60,7 +60,7 @@ The purpose of this document is to outline the requirements for the development 
 
 **1.2 Scope**
 
-The system is designed to manage ICCID, MSISDN, and IMEI numbers in wireless networks. This encompasses the tracking, reservation, and allocation of these numbers, with the primary aim of benefiting wireless service providers by streamlining their inventory management processes.
+The system is designed to manage ICCID, MSISDN, and IMEI numbers in wireless networks. This encompasses the  reservation, and allocation of these numbers, with the primary aim of benefiting wireless service providers by streamlining their inventory management processes.
 
 **1.3 Definitions**
 
@@ -258,8 +258,174 @@ Do we have user personas or profiles to consider?
 
 ## Backend Code with Documentation
 
+<<<<<<< HEAD
 ## Frontend Code with Documentation
 
+=======
+**API Documentation**
+
+Explore the API documentation using Swagger UI:
+
+[Swagger Documentation](/http://localhost:8080/swagger-ui/index.html#/)
+
+## Table of Contents
+
+- [Description](#description)
+- [Server](#server)
+- [API Documentation](#api-documentation)
+- [Clients](#clients)
+- [Schemas](#schemas)
+
+## Server
+
+- **Server URL**: [http://localhost:8080](http://localhost:8080)
+- **Authorize**: winm-controller
+
+## API Documentation
+
+This document provides an overview of the Telecom API, including endpoints, request/response formats, and sample usage.
+
+## API Overview
+
+The Telecom API allows you to manage customer reservations, SIM cards, and related entities.
+
+## Base URL
+
+The base URL for all API endpoints is `http://localhost:8080`. Make sure to replace it with the actual server URL in a production environment.
+
+## Endpoints
+
+### Retrieve All Users
+
+- **URL:** `/api/user`
+- **HTTP Method:** `GET`
+- **Description:** Get a list of all users.
+- **Response:**
+  - `200 OK`: An array of users.
+  
+### Create User
+
+- **URL:** `/api/user`
+- **HTTP Method:** `POST`
+- **Description:** Create a new user.
+- **Request Body:**
+  - JSON object representing a user.
+- **Response:**
+  - `200 OK`: The created user.
+
+### Reserve a Number
+
+- **URL:** `/api/reserve`
+- **HTTP Method:** `POST`
+- **Description:** Reserve a phone number.
+- **Request Body:**
+  - JSON object representing a reservation request.
+- **Response:**
+  - `200 OK`: A boolean indicating success or failure.
+
+### Retrieve All Reservations
+
+- **URL:** `/api/reservations`
+- **HTTP Method:** `GET`
+- **Description:** Get all reservations for a given customer.
+- **Query Parameter:**
+  - `customerName`: The name of the customer.
+- **Response:**
+  - `200 OK`: An array of reservations.
+
+### Retrieve All Reserved SIMs
+
+- **URL:** `/api/allreservedsims`
+- **HTTP Method:** `GET`
+- **Description:** Get all reserved SIM cards.
+- **Response:**
+  - `200 OK`: An array of reserved SIM cards.
+
+### Retrieve All Prepaid SIMs
+
+- **URL:** `/api/allprepaidsims`
+- **HTTP Method:** `GET`
+- **Description:** Get all prepaid SIM cards.
+- **Response:**
+  - `200 OK`: An array of prepaid SIM cards.
+
+### Retrieve All Postpaid SIMs
+
+- **URL:** `/api/allpostpaidsims`
+- **HTTP Method:** `GET`
+- **Description:** Get all postpaid SIM cards.
+- **Response:**
+  - `200 OK`: An array of postpaid SIM cards.
+
+### Retrieve All Inactive SIMs
+
+- **URL:** `/api/allinactivesims`
+- **HTTP Method:** `GET`
+- **Description:** Get all inactive SIM cards.
+- **Response:**
+  - `200 OK`: An array of inactive SIM cards.
+
+## Security
+
+- The API uses JWT (JSON Web Token) for authentication. Make sure to include a valid token in the request headers.
+
+
+## Frontend Code with Documentation
+
+## React Frontend 
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Routing Setup](#routing-setup)
+3. [State Management](#state-management)
+4. [User Authentication](#user-authentication)
+5. [Dropdown Navigation](#dropdown-navigation)
+6. [Navigation Bar](#navigation-bar)
+7. [Routes and Components](#routes-and-components)
+8. [Footer and Social Links](#footer-and-social-links)
+
+## 1. Introduction
+
+The React frontend code is responsible for creating a web application with multiple pages and components. It utilizes React Router for navigation and maintains user authentication state.
+
+## 2. Routing Setup
+
+The application uses the `react-router-dom` library for routing. The `BrowserRouter` wraps the entire app, enabling navigation between different components.
+
+## 3. State Management
+
+State management is achieved using React's `useState` hook. Various states are used to control the visibility of dropdown menus and manage the user login state.
+
+## 4. User Authentication
+
+User authentication is simulated with a "LOGIN" and "LOGOUT" toggle button. The user state is stored in the `userState` state variable and cleared when the user logs out.
+
+## 5. Dropdown Navigation
+
+Dropdown navigation menus are implemented for "Prepaid," "Postpaid," "Reservation," and "Records." Clicking on these menu items toggles the display of corresponding sub-menu items.
+
+## 6. Navigation Bar
+
+The navigation bar is created using an unordered list (`<ul>`) with links to various pages. Icons from the `@fortawesome/react-fontawesome` library are used for improved styling.
+
+## 7. Routes and Components
+
+The `<Routes>` component defines routes for different pages, rendering the corresponding components. Each route specifies the URL path and the component to render.
+
+- `/home`: Home component.
+- `/about`: About component.
+- `/prepaid`, `/postpaid`: Components for new SIM registration.
+- `/account`: Account component.
+- `insert-sim`: IMEI manager component.
+- `/ReservRecord`: Reserved-SIM records component.
+- `/InactiveRecord`: Inactive-SIM records component.
+- `/prepaid-reservation`, `/postpaid-reservation`: Reservation components based on the connection type.
+- `portNetwork-prepaid`, `portNetwork-postpaid`: Porting network components based on the connection type.
+- `prepaid-data`, `postpaid-data`: Data components based on the connection type.
+- `replace-sim-prepaid`, `replace-sim-postpaid`: Replace SIM components based on the connection type.
+
+>>>>>>> c2d11b25a00f8865d04036750155c59ab3c835f4
 ## ER Diagram / Database Model Visualization
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
